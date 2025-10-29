@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.config.LottoInfo;
 import lotto.config.LottoNumberRange;
 import lotto.config.LottoPickNumberCount;
 import lotto.domain.BonusNumber;
@@ -57,11 +58,11 @@ public class LottoController {
 
         // 7. 해당하는 수익금을 출력한다.
         Map<Integer, Integer> result = lottoResult.getResult();
-        System.out.println("3개 일치 (5,000원) - " + result.get(5)+"개");
-        System.out.println("4개 일치 (5,0000원) - "+ result.get(4)+"개");
-        System.out.println("5개 일치 (1,500,000원) - "+ result.get(3)+"개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+ result.get(2)+"개");
-        System.out.println("6개 일치 (2,000,000,000원) - "+ result.get(1)+"개");
+        System.out.println(LottoInfo.FIFTH.getDescription() + " - " + result.get(5)+"개");
+        System.out.println(LottoInfo.FOURTH.getDescription() + " - " + result.get(4)+"개");
+        System.out.println(LottoInfo.THIRD.getDescription() + " - " + result.get(3)+"개");
+        System.out.println(LottoInfo.SECOND.getDescription() + " - " + result.get(2)+"개");
+        System.out.println(LottoInfo.FIRST.getDescription() + " - " + result.get(1)+"개");
 
 
         // 8. 수익률도 출력한다.
