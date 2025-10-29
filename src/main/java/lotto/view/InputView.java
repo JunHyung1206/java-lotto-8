@@ -34,4 +34,15 @@ public class InputView {
                 .map(Integer::parseInt)
                 .toList();
     }
+
+    public int inputBonusNumber() {
+        while (true) {
+            System.out.println("보너스 번호를 입력해주세요.");
+            try {
+                return Integer.parseInt(Console.readLine());
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자만 입력해주세요.");
+            }
+        }
+    }
 }
