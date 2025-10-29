@@ -64,6 +64,16 @@ public class LottoController {
         System.out.println("6개 일치 (2,000,000,000원) - "+ result.get(1)+"개");
 
 
+        // 8. 수익률도 출력한다.
+        int sum = 0;
+        sum += result.get(5) * 5000;
+        sum += result.get(4) * 50000;
+        sum += result.get(3) * 1500000;
+        sum += result.get(2) * 30000000;
+        sum += result.get(1) * 2000000000;
+
+        Double d = (double)sum / payment.getValue();
+        System.out.println("총 수익률은 "+ d+"%입니다.");
     }
 
     private Payment getPayment() {
