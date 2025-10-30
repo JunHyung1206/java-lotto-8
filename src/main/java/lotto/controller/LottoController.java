@@ -18,29 +18,18 @@ public class LottoController {
     }
 
     public void process() {
-        // 1. 입력을 받는다. & 입력 값을 검증받는다.
         Payment payment = getPayment();
-
-        // 2. 해당하는 개수만큼 로또를 받는다.
         LottoSeller lottoSeller = new LottoSeller(payment);
         List<Lotto> lottos = lottoSeller.saleLotto();
         outputView.printSalesLotto(lottoSeller.salesLottoCount(), LottoMapper.toLottoDTO(lottos));
-
-        // 3. 당첨된 번호를 입력받는다.
         Lotto selectedLotto = getSelectedLotto();
-
-        // 4. 보너스 번호를 입력받는다.
         BonusNumber bonusNumber = getBonusNumber(selectedLotto);
-
-        // 5. 로또의 결과를 확인한다.
         LottoResult lottoResult = new LottoResult(lottos, selectedLotto, bonusNumber);
-
-        // 6. 해당하는 수익금을 출력한다.
         Map<WinningRank, Integer> result = lottoResult.getResult();
         outputView.printResult(result, payment);
     }
 
-    
+
     private Payment getPayment() {
         Payment payment = null;
         while (payment == null) {
@@ -76,6 +65,4 @@ public class LottoController {
         }
         return bonusNumber;
     }
-
-
 }

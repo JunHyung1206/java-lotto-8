@@ -8,8 +8,6 @@ public enum ErrorMessages {
     DUPLICATE_ERROR("[ERROR] 중복된 정수가 있습니다."),
     SALES_ERROR("[ERROR] 로또는 1000원 단위로 판매합니다.");
 
-
-
     private final String message;
 
     ErrorMessages(String message) {

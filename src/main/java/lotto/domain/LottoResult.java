@@ -16,7 +16,7 @@ public class LottoResult {
     }
 
 
-    public Map<WinningRank, Integer> getResult(){
+    public Map<WinningRank, Integer> getResult() {
         Map<WinningRank, Integer> result = new EnumMap<>(WinningRank.class);
         for (WinningRank value : WinningRank.values()) {
             result.put(value, 0);

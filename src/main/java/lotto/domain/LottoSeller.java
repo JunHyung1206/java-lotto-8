@@ -13,7 +13,7 @@ public class LottoSeller {
         this.payment = payment;
     }
 
-    public List<Lotto> saleLotto(){
+    public List<Lotto> saleLotto() {
         int salesLottoCount = salesLottoCount();
 
         List<Lotto> saleLotto = new ArrayList<>();
@@ -28,7 +28,7 @@ public class LottoSeller {
         return saleLotto;
     }
 
-    public int salesLottoCount(){
+    public int salesLottoCount() {
         return payment.getValue() / LottoInfo.LOTTO_PRICE.getValue();
     }
 }
