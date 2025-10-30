@@ -10,7 +10,8 @@ public enum WinningRank {
     SECOND("5개 일치, 보너스 볼 일치", 30000000),
     THIRD("5개 일치", 1500000),
     FOURTH("4개 일치", 50000),
-    FIFTH("3개 일치", 5000);
+    FIFTH("3개 일치", 5000),
+    NONE("그외", 0);
 
     private final String label;
     private final int prize;
@@ -25,23 +26,23 @@ public enum WinningRank {
         return label;
     }
 
-    public static Optional<WinningRank> of(int matchCount, boolean bonusMatched) {
+    public static WinningRank of(int matchCount, boolean bonusMatched) {
         if (matchCount == 6) {
-            return Optional.of(FIRST);
+            return FIRST;
         }
         if (matchCount == 5 && bonusMatched) {
-            return Optional.of(SECOND);
+            return SECOND;
         }
         if (matchCount == 5) {
-            return Optional.of(THIRD);
+            return THIRD;
         }
         if (matchCount == 4) {
-            return Optional.of(FOURTH);
+            return FOURTH;
         }
         if (matchCount == 3) {
-            return Optional.of(FIFTH);
+            return FIFTH;
         }
-        return Optional.empty();
+        return NONE;
     }
 
     public int getPrize() {

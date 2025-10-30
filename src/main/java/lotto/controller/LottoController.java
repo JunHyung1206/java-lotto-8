@@ -26,8 +26,16 @@ public class LottoController {
         Lotto mainNumbers = getSelectedLotto();
         BonusNumber bonusNumber = getBonusNumber(mainNumbers);
         WinningNumbers winningNumbers = new WinningNumbers(mainNumbers, bonusNumber);
-        LottoResult lottoResult = new LottoResult(lottos, winningNumbers);
-        Map<WinningRank, Integer> result = lottoResult.getResult();
+        Map<WinningRank, Integer> result = new EnumMap<>(WinningRank.class);
+        for (WinningRank value : WinningRank.values()) {
+            result.put(value, 0);
+        }
+        for (Lotto lotto : lottos) {
+            LottoResult lottoResult = new LottoResult(lotto, winningNumbers);
+            WinningRank winningRank = lottoResult.getResult();
+            result.put(winningRank, result.getOrDefault(winningRank, 0) + 1);
+        }
+
         outputView.printResult(result, payment);
     }
 
