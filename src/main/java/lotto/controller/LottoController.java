@@ -23,9 +23,10 @@ public class LottoController {
         LottoSeller lottoSeller = new LottoSeller(new RandomLottoGenerator());
         List<Lotto> lottos = lottoSeller.sellLottos(payment);
         outputView.printSalesLotto(lottos.size(), LottoMapper.toLottoDTO(lottos));
-        Lotto selectedLotto = getSelectedLotto();
-        BonusNumber bonusNumber = getBonusNumber(selectedLotto);
-        LottoResult lottoResult = new LottoResult(lottos, selectedLotto, bonusNumber);
+        Lotto mainNumbers = getSelectedLotto();
+        BonusNumber bonusNumber = getBonusNumber(mainNumbers);
+        WinningNumbers winningNumbers = new WinningNumbers(mainNumbers, bonusNumber);
+        LottoResult lottoResult = new LottoResult(lottos, winningNumbers);
         Map<WinningRank, Integer> result = lottoResult.getResult();
         outputView.printResult(result, payment);
     }

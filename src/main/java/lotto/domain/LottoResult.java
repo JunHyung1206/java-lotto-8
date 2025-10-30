@@ -6,13 +6,11 @@ import java.util.*;
 
 public class LottoResult {
     private final List<Lotto> salesLotto;
-    private final Lotto selectedLotto;
-    private final BonusNumber bonusNumber;
+    private final WinningNumbers winningNumbers;
 
-    public LottoResult(List<Lotto> salesLotto, Lotto selectedLotto, BonusNumber bonusNumber) {
+    public LottoResult(List<Lotto> salesLotto, WinningNumbers winningNumbers) {
         this.salesLotto = salesLotto;
-        this.selectedLotto = selectedLotto;
-        this.bonusNumber = bonusNumber;
+        this.winningNumbers = winningNumbers;
     }
 
 
@@ -23,9 +21,9 @@ public class LottoResult {
         }
         for (Lotto lotto : salesLotto) {
             Set<Integer> intersection = new HashSet<>(lotto.getNumbers());
-            intersection.retainAll(selectedLotto.getNumbers());
+            intersection.retainAll(winningNumbers.getMainNumbers().getNumbers());
             int matchCount = intersection.size();
-            boolean bonusMatched = lotto.getNumbers().contains(bonusNumber.getValue());
+            boolean bonusMatched = lotto.getNumbers().contains(winningNumbers.getBonusNumber().getValue());
             WinningRank.of(matchCount, bonusMatched).ifPresent(rank -> result.put(rank, result.get(rank) + 1));
         }
         return result;
