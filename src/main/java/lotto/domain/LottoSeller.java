@@ -4,6 +4,7 @@ import lotto.config.LottoInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class LottoSeller {
     private final LottoGenerator lottoGenerator;
@@ -12,12 +13,9 @@ public class LottoSeller {
     }
 
     public List<Lotto> sellLottos(Payment payment) {
-        List<Lotto> lottos = new ArrayList<>();
-        int count = calculatePurchasableCount(payment);
-        for (int i = 0; i < count; i++) {
-            lottos.add(lottoGenerator.generate());
-        }
-        return lottos;
+        return Stream.generate(lottoGenerator::generate)
+                .limit(calculatePurchasableCount(payment))
+                .toList();
     }
 
     private int calculatePurchasableCount(Payment payment) {
