@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.config.LottoNumberInfo;
+import lotto.config.LottoInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +20,9 @@ public class LottoSeller {
 
         for (int i = 0; i < salesLottoCount; i++) {
             saleLotto.add(new Lotto(Randoms.pickUniqueNumbersInRange(
-                    LottoNumberInfo.MIN_VALUE.getValue(),
-                    LottoNumberInfo.MAX_VALUE.getValue(),
-                    LottoNumberInfo.PICK_NUMBER_COUNT.getValue()))
+                    LottoInfo.MIN_VALUE.getValue(),
+                    LottoInfo.MAX_VALUE.getValue(),
+                    LottoInfo.PICK_NUMBER_COUNT.getValue()))
             );
         }
         return saleLotto;

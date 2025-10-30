@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.config.LottoNumberInfo;
+import lotto.config.LottoInfo;
 import lotto.exception.ErrorMessages;
 
 import java.util.ArrayList;
@@ -18,10 +18,10 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LottoNumberInfo.PICK_NUMBER_COUNT.getValue()) {
+        if (numbers.size() != LottoInfo.PICK_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessages.NOT_LOTTO_COUNT_ERROR.getMessage());
         }
-        if (numbers.stream().anyMatch(i -> (i < LottoNumberInfo.MIN_VALUE.getValue() || i > LottoNumberInfo.MAX_VALUE.getValue()))) {
+        if (numbers.stream().anyMatch(i -> (i < LottoInfo.MIN_VALUE.getValue() || i > LottoInfo.MAX_VALUE.getValue()))) {
             throw new IllegalArgumentException(ErrorMessages.OUT_OF_RANGE_ERROR.getMessage());
         }
         if (isDuplicate(numbers)) {
