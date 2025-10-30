@@ -1,12 +1,7 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.config.LottoInfo;
-import lotto.config.LottoNumberInfo;
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.LottoResult;
-import lotto.domain.Payment;
+import lotto.config.WinningRank;
+import lotto.domain.*;
 import lotto.mapper.LottoMapper;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -27,19 +22,9 @@ public class LottoController {
         Payment payment = getPayment();
 
         // 2. 해당하는 개수만큼 로또를 받는다.
-        int salesLottoCount = payment.getValue() / 1000;
-
-        List<Lotto> saleLottos= new ArrayList<>();
-
-        for (int i = 0; i < salesLottoCount; i++) {
-            saleLottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(
-                    LottoNumberInfo.MIN_VALUE.getValue(),
-                    LottoNumberInfo.MAX_VALUE.getValue(),
-                    LottoNumberInfo.PICK_NUMBER_COUNT.getValue()))
-            );
-        }
-
-        outputView.printSalesLotto(salesLottoCount, LottoMapper.toLottoDTO(saleLottos));
+        LottoSeller lottoSeller = new LottoSeller(payment);
+        List<Lotto> lottos = lottoSeller.saleLotto();
+        outputView.printSalesLotto(lottoSeller.salesLottoCount(), LottoMapper.toLottoDTO(lottos));
 
         // 3. 당첨된 번호를 입력받는다.
         Lotto selectedLotto = getSelectedLotto();
@@ -48,16 +33,14 @@ public class LottoController {
         BonusNumber bonusNumber = getBonusNumber(selectedLotto);
 
         // 5. 로또의 결과를 확인한다.
-        LottoResult lottoResult = new LottoResult(saleLottos, selectedLotto, bonusNumber);
+        LottoResult lottoResult = new LottoResult(lottos, selectedLotto, bonusNumber);
 
         // 6. 해당하는 수익금을 출력한다.
-        Map<LottoInfo, Integer> result = lottoResult.getResult();
+        Map<WinningRank, Integer> result = lottoResult.getResult();
         outputView.printResult(result, payment);
-
     }
 
-
-
+    
     private Payment getPayment() {
         Payment payment = null;
         while (payment == null) {
