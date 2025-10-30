@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.config.LottoInfo;
 import lotto.config.WinningRank;
 import lotto.domain.*;
 import lotto.mapper.LottoMapper;
@@ -19,9 +20,9 @@ public class LottoController {
 
     public void process() {
         Payment payment = getPayment();
-        LottoSeller lottoSeller = new LottoSeller(payment);
-        List<Lotto> lottos = lottoSeller.saleLotto();
-        outputView.printSalesLotto(lottoSeller.salesLottoCount(), LottoMapper.toLottoDTO(lottos));
+        LottoSeller lottoSeller = new LottoSeller(new RandomLottoGenerator());
+        List<Lotto> lottos = lottoSeller.sellLottos(payment);
+        outputView.printSalesLotto(lottos.size(), LottoMapper.toLottoDTO(lottos));
         Lotto selectedLotto = getSelectedLotto();
         BonusNumber bonusNumber = getBonusNumber(selectedLotto);
         LottoResult lottoResult = new LottoResult(lottos, selectedLotto, bonusNumber);
