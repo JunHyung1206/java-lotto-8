@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.ErrorMessages;
+
 public class Payment {
     private final int value;
 
@@ -13,7 +15,7 @@ public class Payment {
             throw new IllegalArgumentException("[ERROR] 구매액은 1원 이상입니다.");
         }
         if (payment % 1000 != 0) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException(ErrorMessages.SALES_ERROR.getMessage());
         }
     }
 
