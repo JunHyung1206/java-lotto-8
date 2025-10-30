@@ -1,12 +1,4 @@
 # java-lotto-precourse
-## **과제 진행 요구 사항**
-
-- 미션은 [로또](https://github.com/woowacourse-precourse/java-lotto-8) 저장소를 포크하고 클론하는 것으로 시작한다.
-- **기능을 구현하기 전 `README.md`에 구현할 기능 목록을 정리**해 추가한다.
-- Git의 커밋 단위는 앞 단계에서 `README.md`에 정리한 기능 목록 단위로 추가한다.
-    - [AngularJS Git Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153)을 참고해 커밋 메시지를 작성한다.
-- 자세한 과제 진행 방법은 프리코스 진행 가이드 문서를 참고한다.
-
 ## **기능 요구 사항**
 
 간단한 로또 발매기를 구현한다.
@@ -127,87 +119,48 @@
 
 ```
 
-## **프로그래밍 요구 사항 1**
-
-- JDK 21 버전에서 실행 가능해야 한다.
-- 프로그램 실행의 시작점은 `Application`의 `main()`이다.
-- `build.gradle` 파일은 변경할 수 없으며, **제공된 라이브러리 이외의 외부 라이브러리는 사용하지 않는다.**
-- 프로그램 종료 시 `System.exit()`를 호출하지 않는다.
-- 프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 등의 이름을 바꾸거나 이동하지 않는다.
-- 자바 코드 컨벤션을 지키면서 프로그래밍한다.
-    - 기본적으로 [Java Style Guide](https://github.com/woowacourse/woowacourse-docs/blob/main/styleguide/java)를 원칙으로 한다.
-
-## **프로그래밍 요구 사항 2**
-
-- indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
-    - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
-    - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메서드)를 분리하면 된다.
-- 3항 연산자를 쓰지 않는다.
-- 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
-- JUnit 5와 AssertJ를 이용하여 정리한 기능 목록이 정상적으로 작동하는지 테스트 코드로 확인한다.
-    - 테스트 도구 사용법이 익숙하지 않다면 아래 문서를 참고하여 학습한 후 테스트를 구현한다.
-        - [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide)
-        - [AssertJ User Guide](https://assertj.github.io/doc)
-        - [AssertJ Exception Assertions](https://www.baeldung.com/assertj-exception-assertion)
-        - [Guide to JUnit 5 Parameterized Tests](https://www.baeldung.com/parameterized-tests-junit-5)
-
-## **프로그래밍 요구 사항 3**
-
-- 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-    - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
-- else 예약어를 쓰지 않는다.
-    - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
-    - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
-- Java Enum을 적용하여 프로그램을 구현한다.
-- 구현한 기능에 대한 단위 테스트를 작성한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
-    - 단위 테스트 작성이 익숙하지 않다면 `LottoTest`를 참고하여 학습한 후 테스트를 작성한다.
-
-### **라이브러리**
-
-- `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms` 및 `Console` API를 사용하여 구현해야 한다.
-    - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용한다.
-    - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
-
-### **사용 예시**
-
-- 1에서 45 사이의 중복되지 않은 정수 6개 반환
-
-```java
-Randoms.pickUniqueNumbersInRange(1, 45, 6);
-
-```
-
-### **Lotto 클래스**
-
-- 제공된 `Lotto` 클래스를 사용하여 구현해야 한다.
-- `Lotto`에 `numbers` 이외의 필드(인스턴스 변수)를 추가할 수 없다.
-- `numbers`의 접근 제어자인 `private`은 변경할 수 없다.
-- `Lotto`의 패키지를 변경할 수 있다.
-
-```java
-public class Lotto {
-    private final List<Integer> numbers;
-
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-    }
-
-    // TODO: 추가 기능 구현
-}
-```
-
 ## 구현 할 기능 목록
-- 로또를 구입하는 기능 InputPayment
-  - 구입 단위가 떨어지지 않는 경우 예외 발생
-- 6개의 중복되지 않는 숫자를 로또를 발매하는 기능 MakeLotto
-- 7개의 중복되지 않는 로또 숫자를 추첨하는 기능 DrawLotto
-- 각 로또번호의 당첨을 확인하는 기능 GetResult
-- 로또에 대한 당첨금을 전부 합산하는 기능 GetResult
-- 수익률을 계산하는 기능 GetResult
+### 비즈니스 로직
+- [x] 로또의 구매액을 입력받는다. (InputPayment)
+  - [x] 구입 단위로 나누어 떨어지면 에러를 반환한다.
+  - [x] 구입액은 양수여야 한다.
+- [x] 로또를 생성한다. (MakeLotto)
+  - [x] 각 로또의 숫자의 범위는 1~45로 제한된다.
+  - [x] 각 로또는 중복되지 않은 6개의 숫자를 뽑는다.
+  - [x] 로또를 보여줄 때는 오름차순으로 정렬한다.(*로또 클래스 자체에서 오름차순으로 정렬할지, 뷰에서 정렬할지 선택한다.)
+- [ ] 로또를 발행한다. (SaleLotto)
+  - [ ] 구입 금액에 따른 발행 장수를 계산한다.
+  - [ ] 발행 장수에 맞게 로또를 생성한다.
+- [ ] 발행한 로또 번호를 출력한다. (PrintLotto)
+  - [ ] 구매한 로또의 개수를 출력한다.
+  - [ ] 로또를 보여줄 때는 오름차순으로 정렬하여 보여준다.
+  - [ ] [#, #, #, #, #, #] 형식으로 출력한다.
+- [ ] 로또의 당첨 번호를 입력받는다. (InputWinningNumbers)
+  - [ ] 각 로또의 숫자의 범위는 1~45로 제한된다.
+  - [ ] 각 로또는 중복되지 않은 6개의 숫자를 뽑는다.
+  - [ ] 로또를 보여줄 때는 오름차순으로 정렬한다.(*로또 클래스 자체에서 오름차순으로 정렬할지, 뷰에서 정렬할지 선택한다.)
+- [ ] 로또의 보너스 번호를 입력받는다. (InputBonusNumber)
+  - [ ] 보너스 번호는 1~45의 숫자 중, 당첨번호와 중복되지 않는 수 중 하나를 입력받는다.
+- [ ] 각 로또의 당첨 판정을 진행한다. (GetResult)
+  - [ ] 당첨 조건을 작성한다.
+  - [ ] 구매한 로또와, 당첨번호를 대조한다. 당첨번호와 구매한 로또의 교집합 원소의 수를 계산한다.
+  - [ ] 교집합 원소의 수가 5개인 경우 보너스 번호가 포함되어있는지 확인한다.
+- [ ] 총 당첨된 액수를 계산한다. (GetTotalPrize)
+- [ ] 당첨된 액수에 대해 수익률을 계산한다. (GetRateOfReturn)
+- [ ] 로또 당첨에 대한 결과를 출력한다. (PrintResult)
+  - [ ] 당첨 내역을 출력한다. 당첨조건 (당첨액) - 당첨 복권수 형식으로 5등부터 1등까지 오름차순으로 뵤여준다. 
+  - [ ] 수익률을 출력한다. 수익률은 소수점 둘째자리에서 반올림한다.
+<br/>
+  
+### 그외 제약사항
+- [ ] 입력에서 예외가 발생하였을 때, 예외처리를 한다.
+  - [ ] 모든 예외 메시지는 [ERROR]로 시작한다.
+  - [ ] 예외가 발생하였을 때 발생한 시점부터 다시 입력을 받는다.
+- [ ] 코드의 깊이는 2이하로 작성한다.
+- [ ] else 예약어를 사용하지 않는다. switch case 도 금지한다.
+- [ ] 모든 함수의 길이는 15줄을 넘지 않는다.
+  - [ ] 단일책임을 갖도록 함수를 작성한다.
+      // 1. 입력을 받는다. & 입력 값을 검증받는다.
+      Payment payment = getPayment();
+- [ ] Enum을 적극적으로 활용한다.
+- [ ] 각 유닛별로 테스트를 진행한다.
