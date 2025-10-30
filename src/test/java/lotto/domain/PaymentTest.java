@@ -12,12 +12,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class PaymentTest {
     Payment payment;
 
-    @Test
-    @DisplayName("정상적인 입력에 대해서는 동작한다")
-    void successCase() {
-        int input = 1000;
+    @ParameterizedTest
+    @DisplayName("구매 금액은 양의 정수여야 한다.")
+    @ValueSource(ints = {
+            1000,
+            2000,
+            10000,
+            80000
+    })
+    void successCaseTest(int input) {
         payment = new Payment(input);
-        assertThat(payment.getValue()).isEqualTo(1000);
+        assertThat(payment.getValue()).isEqualTo(input);
     }
 
 
@@ -29,6 +34,18 @@ class PaymentTest {
             0
     })
     void notPositiveCase(int input) {
+        assertThrows(IllegalArgumentException.class, () -> new Payment(input));
+    }
+
+    @ParameterizedTest
+    @DisplayName("구매 금액은 천원단위여야 한다.")
+    @ValueSource(ints = {
+            1234,
+            1001,
+            1,
+            100
+    })
+    void cannotSellLottoCase(int input) {
         assertThrows(IllegalArgumentException.class, () -> new Payment(input));
     }
 }

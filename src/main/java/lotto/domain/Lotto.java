@@ -21,7 +21,7 @@ public class Lotto {
         if (numbers.size() != LottoInfo.PICK_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessages.NOT_LOTTO_COUNT_ERROR.getMessage());
         }
-        if (numbers.stream().anyMatch(i -> (i < LottoInfo.MIN_VALUE.getValue() || i > LottoInfo.MAX_VALUE.getValue()))) {
+        if (numbers.stream().anyMatch(lottoNumber -> (lottoNumber < LottoInfo.MIN_VALUE.getValue() || lottoNumber > LottoInfo.MAX_VALUE.getValue()))) {
             throw new IllegalArgumentException(ErrorMessages.OUT_OF_RANGE_ERROR.getMessage());
         }
         if (isDuplicate(numbers)) {
