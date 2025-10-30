@@ -41,7 +41,7 @@ public class InputView {
             try {
                 return Integer.parseInt(Console.readLine());
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자만 입력해주세요.");
+                System.out.println("[ERROR] 입력된 형식이 올바르지 않습니다.");
             }
         }
     }

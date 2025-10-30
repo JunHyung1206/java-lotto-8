@@ -1,7 +1,5 @@
 package lotto.config;
 
-import lotto.domain.Lotto;
-
 import java.text.DecimalFormat;
 
 public enum LottoInfo {

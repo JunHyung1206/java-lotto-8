@@ -1,11 +1,13 @@
 package lotto.config;
 
-public enum LottoPickNumberCount {
+public enum LottoNumberInfo {
+    MIN_VALUE(1),
+    MAX_VALUE(45),
     PICK_NUMBER_COUNT(6);
 
     private final int value;
 
-    LottoPickNumberCount(int value) {
+    LottoNumberInfo(int value) {
         this.value = value;
     }
 

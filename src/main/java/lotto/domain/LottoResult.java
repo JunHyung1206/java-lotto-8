@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.config.LottoInfo;
+
 import java.util.*;
 
 public class LottoResult {
@@ -14,33 +16,30 @@ public class LottoResult {
     }
 
 
-    public Map<Integer, Integer> getResult(){
-        Map<Integer, Integer> list = new HashMap<>();
-        list.put(1, 0);
-        list.put(2, 0);
-        list.put(3, 0);
-        list.put(4, 0);
-        list.put(5, 0);
-
+    public Map<LottoInfo, Integer> getResult(){
+        Map<LottoInfo, Integer> result = new HashMap<>();
+        for (LottoInfo value : LottoInfo.values()) {
+            result.put(value, 0);
+        }
         for (Lotto lotto : salesLotto) {
             Set<Integer> intersection = new HashSet<>(lotto.getNumbers());
             intersection.retainAll(selectedLotto.getNumbers());
             if (intersection.size() == 6) {
-                list.put(1, list.get(1) + 1);
+                result.put(LottoInfo.FIRST, result.get(LottoInfo.FIRST) + 1);
             }
             if ((intersection.size() == 5) && lotto.getNumbers().contains(bonusNumber.getValue())) {
-                list.put(2, list.get(2) + 1);
+                result.put(LottoInfo.SECOND, result.get(LottoInfo.SECOND) + 1);
             }
             if (intersection.size() == 5 && !lotto.getNumbers().contains(bonusNumber.getValue())) {
-                list.put(3, list.get(3) + 1);
+                result.put(LottoInfo.THIRD, result.get(LottoInfo.THIRD) + 1);
             }
             if (intersection.size() == 4) {
-                list.put(4, list.get(4) + 1);
+                result.put(LottoInfo.FOURTH, result.get(LottoInfo.FOURTH) + 1);
             }
             if (intersection.size() == 3) {
-                list.put(5, list.get(5) + 1);
+                result.put(LottoInfo.FIFTH, result.get(LottoInfo.FIFTH) + 1);
             }
         }
-        return list;
+        return result;
     }
 }

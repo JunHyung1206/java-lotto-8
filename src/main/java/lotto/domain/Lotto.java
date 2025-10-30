@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import lotto.config.LottoNumberRange;
-import lotto.config.LottoPickNumberCount;
+import lotto.config.LottoNumberInfo;
+import lotto.exception.ErrorMessages;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,23 +18,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LottoPickNumberCount.PICK_NUMBER_COUNT.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 " + LottoPickNumberCount.PICK_NUMBER_COUNT.getValue() + "개여야 합니다.");
+        if (numbers.size() != LottoNumberInfo.PICK_NUMBER_COUNT.getValue()) {
+            throw new IllegalArgumentException(ErrorMessages.NOT_LOTTO_COUNT_ERROR.getMessage());
         }
-        if (numbers.stream().anyMatch(i -> (i < LottoNumberRange.MIN_VALUE.getValue() || i > LottoNumberRange.MAX_VALUE.getValue()))) {
-            throw new IllegalArgumentException("[ERROR] 모든 정수는 " + LottoNumberRange.MIN_VALUE.getValue() + " ~ " + LottoNumberRange.MAX_VALUE.getValue() + " 사이의 값으로 이루어져야 합니다.");
+        if (numbers.stream().anyMatch(i -> (i < LottoNumberInfo.MIN_VALUE.getValue() || i > LottoNumberInfo.MAX_VALUE.getValue()))) {
+            throw new IllegalArgumentException(ErrorMessages.OUT_OF_RANGE_ERROR.getMessage());
         }
         if (isDuplicate(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 정수가 있습니다.");
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_ERROR.getMessage());
         }
-    }
-
-    // Debug용
-    @Override
-    public String toString() {
-        return "Lotto{" +
-                "numbers=" + numbers +
-                '}';
     }
 
     private boolean isDuplicate(List<Integer> numbers) {

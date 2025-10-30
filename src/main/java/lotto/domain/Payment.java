@@ -13,7 +13,7 @@ public class Payment {
             throw new IllegalArgumentException("[ERROR] 구매액은 1원 이상입니다.");
         }
         if (payment % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로 판매합니다.");
+            throw new IllegalArgumentException("");
         }
     }
 
