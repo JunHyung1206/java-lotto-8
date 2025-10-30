@@ -29,6 +29,6 @@ public class LottoSeller {
     }
 
     public int salesLottoCount(){
-        return payment.getValue() / 1000;
+        return payment.getValue() / LottoInfo.LOTTO_PRICE.getValue();
     }
 }
