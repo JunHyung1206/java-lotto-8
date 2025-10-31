@@ -3,7 +3,6 @@ package lotto.domain;
 import lotto.config.LottoInfo;
 import lotto.exception.ErrorMessages;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -12,9 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        numbers = new ArrayList<>(numbers);
-        numbers.sort(Integer::compareTo);
-        this.numbers = numbers;
+        this.numbers = numbers.stream().sorted().toList();
     }
 
     private void validate(List<Integer> numbers) {
