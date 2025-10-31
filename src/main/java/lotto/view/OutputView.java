@@ -22,7 +22,7 @@ public class OutputView {
         DecimalFormat moneyFormat = new DecimalFormat("###,###");
         List<ResultLineDTO> resultLines = resultStatisticsDTO.getResultLine();
         for (ResultLineDTO resultLine : resultLines) {
-            System.out.printf("%s (%s원) - %d개\n",resultLine.getLabel(), moneyFormat.format(resultLine.getPrize()),resultLine.getCount());
+            System.out.printf("%s (%s원) - %d개%n",resultLine.getLabel(), moneyFormat.format(resultLine.getPrize()),resultLine.getCount());
         }
 
         DecimalFormat percentFormat = new DecimalFormat("#,##0.0");
