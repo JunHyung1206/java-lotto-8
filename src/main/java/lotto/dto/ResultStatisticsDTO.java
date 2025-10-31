@@ -1,27 +1,19 @@
 
 package lotto.dto;
 
-import lotto.config.WinningRank;
-
-import java.util.Map;
+import java.util.List;
 
 public class ResultStatisticsDTO {
-    private final Map<WinningRank, Integer> result;
-    private final int prize;
+    private final List<ResultLineDTO> resultLine;
     private final double rateOfReturn;
 
-    public ResultStatisticsDTO(Map<WinningRank, Integer> result, int prize, double rateOfReturn) {
-        this.result = result;
-        this.prize = prize;
+    public ResultStatisticsDTO(List<ResultLineDTO> resultLine, double rateOfReturn) {
+        this.resultLine = resultLine;
         this.rateOfReturn = rateOfReturn;
     }
 
-    public Map<WinningRank, Integer> getResult() {
-        return result;
-    }
-
-    public int getPrize() {
-        return prize;
+    public List<ResultLineDTO> getResultLine() {
+        return resultLine;
     }
 
     public double getRateOfReturn() {

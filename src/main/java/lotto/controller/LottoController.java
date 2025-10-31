@@ -21,7 +21,7 @@ public class LottoController {
         Payment payment = getPayment();
         LottoSeller lottoSeller = new LottoSeller(new RandomLottoGenerator());
         List<Lotto> lottos = lottoSeller.sellLottos(payment);
-        outputView.printSalesLotto(LottoMapper.toLottoDTO(lottos));
+        outputView.printSalesLotto(LottoMapper.toSalesLottoDTO(lottos));
         Lotto mainNumbers = getSelectedLotto();
         BonusNumber bonusNumber = getBonusNumber(mainNumbers);
         WinningNumbers winningNumbers = new WinningNumbers(mainNumbers, bonusNumber);

@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.config.WinningRank;
+import lotto.dto.ResultLineDTO;
 import lotto.dto.ResultStatisticsDTO;
 import lotto.dto.SalesLottoDTO;
 
@@ -8,15 +8,6 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputView {
-    private static final WinningRank[] PRINT_ORDER = {
-            WinningRank.FIFTH,   // 3개 일치
-            WinningRank.FOURTH,  // 4개 일치
-            WinningRank.THIRD,   // 5개 일치
-            WinningRank.SECOND,  // 5개 + 보너스
-            WinningRank.FIRST    // 6개 일치
-    };
-
-
     public void printSalesLotto(SalesLottoDTO lottoDTO) {
         System.out.println(lottoDTO.getSaleLotto().size() + "개를 구매했습니다.");
         List<List<Integer>> saleLotto = lottoDTO.getSaleLotto();
@@ -29,10 +20,9 @@ public class OutputView {
     public void printResult(ResultStatisticsDTO resultStatisticsDTO) {
         printResultHeader();
         DecimalFormat moneyFormat = new DecimalFormat("###,###");
-        for (WinningRank rank : PRINT_ORDER) {
-            long prize = rank.getPrize();
-            int count = resultStatisticsDTO.getResult().getOrDefault(rank, 0);
-            System.out.println(rank.getLabel() + " (" + moneyFormat.format(prize) + "원) - " + count + "개");
+        List<ResultLineDTO> resultLines = resultStatisticsDTO.getResultLine();
+        for (ResultLineDTO resultLine : resultLines) {
+            System.out.printf("%s (%s원) - %d개\n",resultLine.getLabel(), moneyFormat.format(resultLine.getPrize()),resultLine.getCount());
         }
 
         DecimalFormat percentFormat = new DecimalFormat("#,##0.0");
