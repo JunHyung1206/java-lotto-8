@@ -19,12 +19,16 @@ public class Lotto {
         if (numbers.size() != LottoInfo.PICK_NUMBER_COUNT.getValue()) {
             throw new LottoValidationException(ErrorMessages.NOT_LOTTO_COUNT_ERROR);
         }
-        if (numbers.stream().anyMatch(lottoNumber -> (lottoNumber < LottoInfo.MIN_VALUE.getValue() || lottoNumber > LottoInfo.MAX_VALUE.getValue()))) {
+        if (numbers.stream().anyMatch(this::isOutOfRange)) {
             throw new LottoValidationException(ErrorMessages.OUT_OF_RANGE_ERROR);
         }
         if (isDuplicate(numbers)) {
             throw new LottoValidationException(ErrorMessages.DUPLICATE_ERROR);
         }
+    }
+
+    private boolean isOutOfRange(int number){
+        return (number < LottoInfo.MIN_VALUE.getValue() || number > LottoInfo.MAX_VALUE.getValue());
     }
 
     private boolean isDuplicate(List<Integer> numbers) {
