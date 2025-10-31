@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.*;
 import lotto.mapper.LottoMapper;
 import lotto.service.LottoPurchaseService;
+import lotto.service.LottoResultService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -12,22 +13,28 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoPurchaseService lottoPurchaseService;
+    private final LottoResultService lottoResultService;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoPurchaseService lottoPurchaseService) {
+    public LottoController(InputView inputView, OutputView outputView, LottoPurchaseService lottoPurchaseService, LottoResultService lottoResultService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoPurchaseService = lottoPurchaseService;
+        this.lottoResultService = lottoResultService;
     }
     
     public void run() {
         Payment payment = getPayment();
-        List<Lotto> lottos = lottoPurchaseService.purchase(payment);
-        outputView.printSalesLotto(LottoMapper.toSalesLottoDTO(lottos));
+        List<Lotto> purchasedLottos = lottoPurchaseService.purchase(payment);
+        outputView.printSalesLotto(LottoMapper.toSalesLottoDTO(purchasedLottos));
+        WinningNumbers winningNumbers = getWinningNumbers();
+        ResultStatistics resultStatistics = lottoResultService.aggregate(purchasedLottos, winningNumbers);
+        outputView.printResult(LottoMapper.toResultStatisticsDTO(resultStatistics));
+    }
+
+    private WinningNumbers getWinningNumbers() {
         Lotto mainNumbers = getSelectedLotto();
         BonusNumber bonusNumber = getBonusNumber(mainNumbers);
-        WinningNumbers winningNumbers = new WinningNumbers(mainNumbers, bonusNumber);
-        ResultStatistics resultStatistics = new ResultStatistics(lottos, winningNumbers);
-        outputView.printResult(LottoMapper.toResultStatisticsDTO(resultStatistics));
+        return new WinningNumbers(mainNumbers, bonusNumber);
     }
 
     private Payment getPayment() {
