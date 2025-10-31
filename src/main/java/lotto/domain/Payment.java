@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.exception.ErrorMessages;
+import lotto.exception.LottoValidationException;
 
 public class Payment {
     private final int value;
@@ -12,10 +13,10 @@ public class Payment {
 
     private void validate(int payment) {
         if (payment <= 0) {
-            throw new IllegalArgumentException("[ERROR] 구매액은 1원 이상입니다.");
+            throw new LottoValidationException(ErrorMessages.MIN_PAYMENT_ERROR);
         }
         if (payment % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessages.SALES_ERROR.getMessage());
+            throw new LottoValidationException(ErrorMessages.SALES_ERROR);
         }
     }
 

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.config.LottoInfo;
 import lotto.exception.ErrorMessages;
+import lotto.exception.LottoValidationException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,13 +17,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LottoInfo.PICK_NUMBER_COUNT.getValue()) {
-            throw new IllegalArgumentException(ErrorMessages.NOT_LOTTO_COUNT_ERROR.getMessage());
+            throw new LottoValidationException(ErrorMessages.NOT_LOTTO_COUNT_ERROR);
         }
         if (numbers.stream().anyMatch(lottoNumber -> (lottoNumber < LottoInfo.MIN_VALUE.getValue() || lottoNumber > LottoInfo.MAX_VALUE.getValue()))) {
-            throw new IllegalArgumentException(ErrorMessages.OUT_OF_RANGE_ERROR.getMessage());
+            throw new LottoValidationException(ErrorMessages.OUT_OF_RANGE_ERROR);
         }
         if (isDuplicate(numbers)) {
-            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_ERROR.getMessage());
+            throw new LottoValidationException(ErrorMessages.DUPLICATE_ERROR);
         }
     }
 
