@@ -34,6 +34,6 @@ public class LottoMapper {
         for (WinningRank winningRank : PRINT_ORDER) {
             resultLines.add(new ResultLineDTO(winningRank.getLabel(), winningRank.getPrize(), result.getOrDefault(winningRank,0)));
         }
-        return new ResultStatisticsDTO(resultLines, resultStatistics.calculateRateOfReturn());
+        return new ResultStatisticsDTO(resultLines, resultStatistics.getRateOfReturn());
     }
 }
