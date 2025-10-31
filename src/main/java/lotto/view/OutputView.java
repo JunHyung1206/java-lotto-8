@@ -40,4 +40,8 @@ public class OutputView {
         DecimalFormat percentFormat = new DecimalFormat("#,##0.0");
         System.out.println("총 수익률은 " + percentFormat.format(rateOfReturn) + "%입니다.");
     }
+
+    public void printError(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
