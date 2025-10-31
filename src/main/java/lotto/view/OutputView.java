@@ -26,7 +26,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printResult(Map<WinningRank, Integer> result, Payment payment) {
+    public void printResult(Map<WinningRank, Integer> result, double rateOfReturn) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -37,14 +37,7 @@ public class OutputView {
             System.out.println(rank.getLabel() + " (" + moneyFormat.format(prize) + "원) - " + count + "개");
         }
 
-        long totalPrize = 0L;
-        for (WinningRank rank : PRINT_ORDER) {
-            int count = result.getOrDefault(rank, 0);
-            totalPrize += (long) count * rank.getPrize();
-        }
-
-        double yieldPercent = (double) totalPrize / payment.getValue() * 100.0;
         DecimalFormat percentFormat = new DecimalFormat("#,##0.0");
-        System.out.println("총 수익률은 " + percentFormat.format(yieldPercent) + "%입니다.");
+        System.out.println("총 수익률은 " + percentFormat.format(rateOfReturn) + "%입니다.");
     }
 }

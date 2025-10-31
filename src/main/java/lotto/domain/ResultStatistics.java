@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.config.LottoInfo;
 import lotto.config.WinningRank;
 
 import java.util.EnumMap;
@@ -37,6 +38,11 @@ public class ResultStatistics {
         return prize;
     }
 
+    public double calculateRateOfReturn(){
+        int prize = calculatePrize();
+        int totalPayment = lottos.size() * LottoInfo.LOTTO_PRICE.getValue();
+        return (double) prize / totalPayment * 100;
+    }
 
     public Map<WinningRank, Integer> getResult() {
         return result;
