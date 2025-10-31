@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.config.WinningRank;
+import lotto.dto.SalesLottoDTO;
 
 import java.text.DecimalFormat;
 import java.util.List;

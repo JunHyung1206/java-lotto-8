@@ -1,7 +1,7 @@
 package lotto.mapper;
 
 import lotto.domain.Lotto;
-import lotto.view.SalesLottoDTO;
+import lotto.dto.SalesLottoDTO;
 
 import java.util.ArrayList;
 import java.util.List;
