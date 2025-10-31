@@ -1,7 +1,8 @@
-package lotto.domain;
+package lotto.domain.lottogenerator;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.config.LottoInfo;
+import lotto.domain.Lotto;
 
 public class RandomLottoGenerator implements LottoGenerator {
     @Override

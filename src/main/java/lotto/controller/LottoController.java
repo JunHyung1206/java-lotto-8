@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.config.LottoInfo;
 import lotto.config.WinningRank;
 import lotto.domain.*;
+import lotto.domain.lottogenerator.RandomLottoGenerator;
 import lotto.mapper.LottoMapper;
 import lotto.view.InputView;
 import lotto.view.OutputView;
