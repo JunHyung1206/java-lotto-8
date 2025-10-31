@@ -17,7 +17,7 @@ public class LottoController {
         this.outputView = outputView;
     }
 
-    public void process() {
+    public void run() {
         Payment payment = getPayment();
         LottoSeller lottoSeller = new LottoSeller(new RandomLottoGenerator());
         List<Lotto> lottos = lottoSeller.sellLottos(payment);
