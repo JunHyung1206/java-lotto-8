@@ -1,8 +1,8 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.domain.lottogenerator.RandomLottoGenerator;
 import lotto.mapper.LottoMapper;
+import lotto.service.LottoPurchaseService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -11,16 +11,17 @@ import java.util.*;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final LottoPurchaseService lottoPurchaseService;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView, LottoPurchaseService lottoPurchaseService) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.lottoPurchaseService = lottoPurchaseService;
     }
-
+    
     public void run() {
         Payment payment = getPayment();
-        LottoSeller lottoSeller = new LottoSeller(new RandomLottoGenerator());
-        List<Lotto> lottos = lottoSeller.sellLottos(payment);
+        List<Lotto> lottos = lottoPurchaseService.purchase(payment);
         outputView.printSalesLotto(LottoMapper.toSalesLottoDTO(lottos));
         Lotto mainNumbers = getSelectedLotto();
         BonusNumber bonusNumber = getBonusNumber(mainNumbers);
