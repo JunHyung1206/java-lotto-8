@@ -23,8 +23,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
-
     @Test
     @DisplayName("성공 케이스 : 정수가 6개로 정상적으로 들어갔을 때 정상적으로 결과가 반환된다.")
     void basicSelectNumbersTest() {
@@ -34,7 +32,7 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("실패 케이스 : 리스트의 원소가 6개가 아니라면 실패한다.")
+    @DisplayName("리스트의 원소가 6개가 아니라면 실패한다.")
     void lengthTest() {
         assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of()));
         assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(1)));
@@ -44,7 +42,7 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("실패 케이스 : 배열의 원소가 1에서 45 사이로 이루어져 있지 않으면 실패한다.")
+    @DisplayName("배열의 원소가 1에서 45 사이로 이루어져 있지 않으면 실패한다.")
     void notRangeTest() {
         assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(1,2,3,4,5,120)));
         assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(1,2,3,4,5,50)));
@@ -54,7 +52,7 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("실패 케이스 : 배열의 원소가 중복되어 있다면 실패한다.")
+    @DisplayName("배열의 원소가 중복되어 있다면 실패한다.")
     void duplicateTest() {
         assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(1,2,3,4,5,5)));
         assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(1,2,3,4,5,1)));
@@ -63,4 +61,10 @@ class LottoTest {
         assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(15,15,15,15,15,15)));
     }
 
+    @Test
+    @DisplayName("로또는 오름차순으로 정렬된 값을 보유한다.")
+    void sortedTest() {
+        Lotto lotto = new Lotto(List.of(6, 2, 3, 4, 5, 1));
+        assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
 }
