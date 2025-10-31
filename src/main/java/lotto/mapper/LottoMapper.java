@@ -2,6 +2,7 @@ package lotto.mapper;
 
 import lotto.domain.Lotto;
 import lotto.domain.ResultStatistics;
+import lotto.domain.WinningResult;
 import lotto.dto.ResultLineDTO;
 import lotto.dto.ResultStatisticsDTO;
 import lotto.dto.SalesLottoDTO;
@@ -28,8 +29,8 @@ public class LottoMapper {
         return new SalesLottoDTO(salesLottoDTO);
     }
 
-    public static ResultStatisticsDTO toResultStatisticsDTO(ResultStatistics resultStatistics) {
-        Map<WinningRank, Integer> result = resultStatistics.getResult();
+    public static ResultStatisticsDTO toResultStatisticsDTO(WinningResult winningResult, ResultStatistics resultStatistics) {
+        Map<WinningRank, Integer> result = winningResult.getCounts();
         List<ResultLineDTO> resultLines = new ArrayList<>();
         for (WinningRank winningRank : PRINT_ORDER) {
             resultLines.add(new ResultLineDTO(winningRank.getLabel(), winningRank.getPrize(), result.getOrDefault(winningRank,0)));

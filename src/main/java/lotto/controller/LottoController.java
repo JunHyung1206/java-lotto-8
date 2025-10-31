@@ -27,8 +27,9 @@ public class LottoController {
         List<Lotto> purchasedLottos = lottoPurchaseService.purchase(payment);
         outputView.printSalesLotto(LottoMapper.toSalesLottoDTO(purchasedLottos));
         WinningNumbers winningNumbers = getWinningNumbers();
-        ResultStatistics resultStatistics = lottoResultService.aggregate(purchasedLottos, winningNumbers);
-        outputView.printResult(LottoMapper.toResultStatisticsDTO(resultStatistics));
+        WinningResult winningResult = lottoResultService.calculateResult(purchasedLottos, winningNumbers);
+        ResultStatistics resultStatistics = lottoResultService.aggregate(winningResult);
+        outputView.printResult(LottoMapper.toResultStatisticsDTO(winningResult, resultStatistics));
     }
 
     private WinningNumbers getWinningNumbers() {

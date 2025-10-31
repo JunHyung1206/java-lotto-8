@@ -13,13 +13,11 @@ public class LottoResult {
         this.winningNumbers = winningNumbers;
     }
 
-
     public WinningRank getResult() {
         Set<Integer> intersection = new HashSet<>(lotto.getNumbers());
         intersection.retainAll(winningNumbers.getMainNumbers().getNumbers());
         int matchCount = intersection.size();
         boolean bonusMatched = lotto.getNumbers().contains(winningNumbers.getBonusNumber().getValue());
-
         return WinningRank.of(matchCount, bonusMatched);
     }
 }

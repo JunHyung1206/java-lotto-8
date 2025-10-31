@@ -1,16 +1,10 @@
 package lotto.domain;
 
-
-import lotto.config.WinningRank;
-import java.util.Map;
-
 public class ResultStatistics {
     private final int prize;
     private final double rateOfReturn;
-    private final Map<WinningRank, Integer> result;
 
-    public ResultStatistics(Map<WinningRank, Integer> result, int prize, double rateOfReturn) {
-        this.result = result;
+    public ResultStatistics(int prize, double rateOfReturn) {
         this.prize = prize;
         this.rateOfReturn = rateOfReturn;
     }
@@ -23,7 +17,4 @@ public class ResultStatistics {
         return rateOfReturn;
     }
 
-    public Map<WinningRank, Integer> getResult() {
-        return result;
-    }
 }
