@@ -98,7 +98,7 @@ public enum LottoInfo {
 ```java
 public class LottoController {
     ...
-    
+
     public void run() {
         Payment payment = getPayment();
         LottoSeller lottoSeller = new LottoSeller(new RandomLottoGenerator());
@@ -112,6 +112,7 @@ public class LottoController {
     }
     
     ...
+}
 ```
 - run에서 하는 일이 너무 많은 것 같다.
 - 입력을 받고, 이를 생성하고 처리해서 출력을 하는 내용이긴 한데, 로직이 매우 길고 복잡해서 잘 안읽힌다.
