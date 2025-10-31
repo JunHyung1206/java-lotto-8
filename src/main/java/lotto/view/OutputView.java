@@ -17,8 +17,8 @@ public class OutputView {
     };
 
 
-    public void printSalesLotto(int salesLottoCount, SalesLottoDTO lottoDTO) {
-        System.out.println(salesLottoCount + "개를 구매했습니다.");
+    public void printSalesLotto(SalesLottoDTO lottoDTO) {
+        System.out.println(lottoDTO.getSaleLotto().size() + "개를 구매했습니다.");
         List<List<Integer>> saleLotto = lottoDTO.getSaleLotto();
         for (List<Integer> lotto : saleLotto) {
             System.out.println(lotto);
