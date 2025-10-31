@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.exception.LottoValidationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,15 +30,15 @@ class BonusNumberTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, 100, -45})
-    @DisplayName("보너스 번호의 입력 값이 1~45가 아닌 케이스")
+    @DisplayName("보너스 번호의 입력 값이 1 ~ 45가 아닌 케이스")
     void invalidRangeCase(int input) {
-        org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> new BonusNumber(input, lotto));
+        assertThrows(LottoValidationException.class, () -> new BonusNumber(input, lotto));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    @DisplayName("보너스 번호의 입력 값이 당첨 번호와 겹치는")
+    @DisplayName("보너스 번호의 입력 값이 당첨 번호와 겹치는지 확인")
     void duplicateCase(int input) {
-        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> new BonusNumber(input, lotto));
+        assertThrows(LottoValidationException.class, () -> new BonusNumber(input, lotto));
     }
 }
