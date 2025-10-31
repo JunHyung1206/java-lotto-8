@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.config.LottoInfo;
 import lotto.exception.ErrorMessages;
+import lotto.exception.LottoValidationException;
 
 import java.util.List;
 
@@ -20,10 +21,10 @@ public class BonusNumber {
 
     private void validate(int value, Lotto lotto) {
         if (value < LottoInfo.MIN_VALUE.getValue() || value > LottoInfo.MAX_VALUE.getValue()) {
-            throw new IllegalArgumentException(ErrorMessages.OUT_OF_RANGE_ERROR.getMessage());
+            throw new LottoValidationException(ErrorMessages.OUT_OF_RANGE_ERROR);
         }
         if (isDuplicate(value, lotto.getNumbers())) {
-            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_ERROR.getMessage());
+            throw new LottoValidationException(ErrorMessages.DUPLICATE_ERROR);
         }
     }
 
