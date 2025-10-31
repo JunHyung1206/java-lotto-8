@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.config.LottoInfo;
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoValidationException;
 
@@ -15,7 +16,7 @@ public class Payment {
         if (payment <= 0) {
             throw new LottoValidationException(ErrorMessages.MIN_PAYMENT_ERROR);
         }
-        if (payment % 1000 != 0) {
+        if (payment % LottoInfo.LOTTO_PRICE.getValue() != 0) {
             throw new LottoValidationException(ErrorMessages.SALES_ERROR);
         }
     }
