@@ -13,7 +13,7 @@ public class Payment {
     }
 
     private void validate(int payment) {
-        if (payment <= 0) {
+        if (payment < LottoInfo.LOTTO_PRICE) {
             throw new LottoValidationException(ErrorMessages.MIN_PAYMENT_ERROR);
         }
         if (payment % LottoInfo.LOTTO_PRICE != 0) {
