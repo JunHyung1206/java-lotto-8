@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.config.WinningRank;
+import lotto.dto.ResultStatisticsDTO;
 import lotto.dto.SalesLottoDTO;
 
 import java.text.DecimalFormat;
@@ -26,19 +27,19 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printResult(Map<WinningRank, Integer> result, double rateOfReturn) {
+    public void printResult(ResultStatisticsDTO resultStatisticsDTO) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         DecimalFormat moneyFormat = new DecimalFormat("###,###");
         for (WinningRank rank : PRINT_ORDER) {
             long prize = rank.getPrize();
-            int count = result.getOrDefault(rank, 0);
+            int count = resultStatisticsDTO.getResult().getOrDefault(rank, 0);
             System.out.println(rank.getLabel() + " (" + moneyFormat.format(prize) + "원) - " + count + "개");
         }
 
         DecimalFormat percentFormat = new DecimalFormat("#,##0.0");
-        System.out.println("총 수익률은 " + percentFormat.format(rateOfReturn) + "%입니다.");
+        System.out.println("총 수익률은 " + percentFormat.format(resultStatisticsDTO.getRateOfReturn()) + "%입니다.");
     }
 
     public void printError(String errorMessage) {

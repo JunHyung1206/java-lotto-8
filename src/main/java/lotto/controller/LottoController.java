@@ -26,7 +26,7 @@ public class LottoController {
         BonusNumber bonusNumber = getBonusNumber(mainNumbers);
         WinningNumbers winningNumbers = new WinningNumbers(mainNumbers, bonusNumber);
         ResultStatistics resultStatistics = new ResultStatistics(lottos, winningNumbers);
-        outputView.printResult(resultStatistics.getResult(), resultStatistics.calculateRateOfReturn());
+        outputView.printResult(LottoMapper.toResultStatisticsDTO(resultStatistics));
     }
 
     private Payment getPayment() {

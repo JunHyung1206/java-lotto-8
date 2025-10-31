@@ -1,6 +1,8 @@
 package lotto.mapper;
 
 import lotto.domain.Lotto;
+import lotto.domain.ResultStatistics;
+import lotto.dto.ResultStatisticsDTO;
 import lotto.dto.SalesLottoDTO;
 
 import java.util.ArrayList;
@@ -14,5 +16,10 @@ public class LottoMapper {
             salesLottoDTO.add(lotto.getNumbers());
         }
         return new SalesLottoDTO(salesLottoDTO);
+    }
+
+    public static ResultStatisticsDTO toResultStatisticsDTO(ResultStatistics resultStatistics) {
+
+        return new ResultStatisticsDTO(resultStatistics.getResult(), resultStatistics.calculatePrize(), resultStatistics.calculateRateOfReturn());
     }
 }
