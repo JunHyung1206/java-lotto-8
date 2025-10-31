@@ -38,7 +38,9 @@ public class LottoController {
         while (payment == null) {
             try {
                 payment = new Payment(inputView.inputPayment());
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR]");
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -50,7 +52,9 @@ public class LottoController {
         while (lotto == null) {
             try {
                 lotto = new Lotto(inputView.inputLotto());
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR]");
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -62,7 +66,9 @@ public class LottoController {
         while (bonusNumber == null) {
             try {
                 bonusNumber = new BonusNumber(inputView.inputBonusNumber(), lotto);
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR]");
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
