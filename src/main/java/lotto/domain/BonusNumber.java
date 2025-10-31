@@ -20,7 +20,7 @@ public class BonusNumber {
     }
 
     private void validate(int value, Lotto lotto) {
-        if (value < LottoInfo.MIN_VALUE.getValue() || value > LottoInfo.MAX_VALUE.getValue()) {
+        if (value < LottoInfo.MIN_VALUE || value > LottoInfo.MAX_VALUE) {
             throw new LottoValidationException(ErrorMessages.OUT_OF_RANGE_ERROR);
         }
         if (isDuplicate(value, lotto.getNumbers())) {

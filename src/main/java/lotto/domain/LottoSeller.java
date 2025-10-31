@@ -19,6 +19,6 @@ public class LottoSeller {
     }
 
     private int calculatePurchasableCount(Payment payment) {
-        return payment.getValue() / LottoInfo.LOTTO_PRICE.getValue();
+        return payment.getValue() / LottoInfo.LOTTO_PRICE;
     }
 }

@@ -40,7 +40,7 @@ public class ResultStatistics {
 
     public double calculateRateOfReturn(){
         int prize = calculatePrize();
-        int totalPayment = lottos.size() * LottoInfo.LOTTO_PRICE.getValue();
+        int totalPayment = lottos.size() * LottoInfo.LOTTO_PRICE;
         return (double) prize / totalPayment * 100;
     }
 

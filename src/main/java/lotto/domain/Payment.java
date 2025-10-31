@@ -16,7 +16,7 @@ public class Payment {
         if (payment <= 0) {
             throw new LottoValidationException(ErrorMessages.MIN_PAYMENT_ERROR);
         }
-        if (payment % LottoInfo.LOTTO_PRICE.getValue() != 0) {
+        if (payment % LottoInfo.LOTTO_PRICE != 0) {
             throw new LottoValidationException(ErrorMessages.SALES_ERROR);
         }
     }

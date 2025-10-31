@@ -8,9 +8,9 @@ public class RandomLottoGenerator implements LottoGenerator {
     @Override
     public Lotto generate() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(
-                LottoInfo.MIN_VALUE.getValue(),
-                LottoInfo.MAX_VALUE.getValue(),
-                LottoInfo.PICK_NUMBER_COUNT.getValue())
+                LottoInfo.MIN_VALUE,
+                LottoInfo.MAX_VALUE,
+                LottoInfo.PICK_NUMBER_COUNT)
         );
     }
 }
