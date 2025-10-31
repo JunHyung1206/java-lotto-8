@@ -1,8 +1,5 @@
 package lotto.config;
 
-
-import java.util.Optional;
-
 public enum WinningRank {
 
 

@@ -26,7 +26,7 @@ class LottoTest {
     @Test
     @DisplayName("성공 케이스 : 정수가 6개로 정상적으로 들어갔을 때 정상적으로 결과가 반환된다.")
     void basicSelectNumbersTest() {
-        Lotto selectNumbers = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto selectNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         System.out.println("selectNumbers = " + selectNumbers);
         assertThat(selectNumbers.getNumbers().size()).isEqualTo(6);
     }
@@ -44,21 +44,21 @@ class LottoTest {
     @Test
     @DisplayName("배열의 원소가 1에서 45 사이로 이루어져 있지 않으면 실패한다.")
     void notRangeTest() {
-        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(1,2,3,4,5,120)));
-        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(1,2,3,4,5,50)));
-        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(0,2,3,4,5,50)));
-        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(-13,2,3,4,5,50)));
-        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(-15,2123,3,4,5,50)));
+        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(1, 2, 3, 4, 5, 120)));
+        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(1, 2, 3, 4, 5, 50)));
+        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(0, 2, 3, 4, 5, 50)));
+        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(-13, 2, 3, 4, 5, 50)));
+        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(-15, 2123, 3, 4, 5, 50)));
     }
 
     @Test
     @DisplayName("배열의 원소가 중복되어 있다면 실패한다.")
     void duplicateTest() {
-        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(1,2,3,4,5,5)));
-        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(1,2,3,4,5,1)));
-        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(3,2,3,4,5,43)));
-        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(13,2,13,4,5,50)));
-        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(15,15,15,15,15,15)));
+        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(1, 2, 3, 4, 5, 5)));
+        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(1, 2, 3, 4, 5, 1)));
+        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(3, 2, 3, 4, 5, 43)));
+        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(13, 2, 13, 4, 5, 50)));
+        assertThrows(IllegalArgumentException.class, () -> new Lotto(List.of(15, 15, 15, 15, 15, 15)));
     }
 
     @Test

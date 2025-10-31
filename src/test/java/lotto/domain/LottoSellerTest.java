@@ -13,7 +13,7 @@ class LottoSellerTest {
 
     @Test
     @DisplayName("각 구매액수에 맞게 로또를 생성한다.")
-    void successCase(){
+    void successCase() {
         // given
         lottoSeller = new LottoSeller(new RandomLottoGenerator());
         Payment payment1 = new Payment(8000);
