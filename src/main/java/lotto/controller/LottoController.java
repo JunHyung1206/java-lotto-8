@@ -66,7 +66,7 @@ public class LottoController {
         BonusNumber bonusNumber = null;
         while (bonusNumber == null) {
             try {
-                bonusNumber = new BonusNumber(inputView.inputBonusNumber(), lotto);
+                bonusNumber = new BonusNumber(inputView.inputBonusNumber());
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
