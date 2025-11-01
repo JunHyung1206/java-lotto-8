@@ -14,17 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BonusNumberTest {
     BonusNumber bonusNumber;
-    Lotto lotto;
-
-    @BeforeEach
-    void setUp() {
-        lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-    }
 
     @Test
     @DisplayName("정상적인 동작에 대한 테스트 케이스")
     void successTestCase() {
-        bonusNumber = new BonusNumber(7, lotto);
+        bonusNumber = new BonusNumber(7);
         assertThat(bonusNumber.getValue()).isEqualTo(7);
     }
 
@@ -32,13 +26,6 @@ class BonusNumberTest {
     @ValueSource(ints = {0, 100, -45})
     @DisplayName("보너스 번호의 입력 값이 1 ~ 45가 아닌 케이스")
     void invalidRangeCase(int input) {
-        assertThrows(LottoValidationException.class, () -> new BonusNumber(input, lotto));
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3})
-    @DisplayName("보너스 번호의 입력 값이 당첨 번호와 겹치는지 확인")
-    void duplicateCase(int input) {
-        assertThrows(LottoValidationException.class, () -> new BonusNumber(input, lotto));
+        assertThrows(LottoValidationException.class, () -> new BonusNumber(input));
     }
 }
