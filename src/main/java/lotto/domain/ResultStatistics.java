@@ -16,5 +16,4 @@ public class ResultStatistics {
     public double getRateOfReturn() {
         return rateOfReturn;
     }
-
 }
