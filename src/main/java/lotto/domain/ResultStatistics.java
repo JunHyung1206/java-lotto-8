@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.config.LottoInfo;
+
 public class ResultStatistics {
     private final long prize;
     private final double rateOfReturn;
@@ -9,10 +11,11 @@ public class ResultStatistics {
         this.prize = prize;
         this.rateOfReturn = rateOfReturn;
     }
-    public static ResultStatistics of(WinningResult winningResult, Payment payment) {
+
+    public static ResultStatistics of(WinningResult winningResult) {
+        int purchasedPayment = winningResult.totalCounts() * LottoInfo.LOTTO_PRICE;
         long totalPrize = winningResult.calculatePrize();
-        int paymentValue = payment.getValue();
-        double rateOfReturn = ((double) totalPrize / paymentValue) * PERSENT;
+        double rateOfReturn = ((double) totalPrize / purchasedPayment) * PERSENT;
         return new ResultStatistics(totalPrize, rateOfReturn);
     }
 

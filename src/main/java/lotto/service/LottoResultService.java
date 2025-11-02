@@ -5,6 +5,8 @@ import lotto.config.WinningRank;
 import lotto.domain.*;
 import lotto.domain.WinningNumbers;
 import lotto.domain.lottoresultevaluator.LottoResultEvaluator;
+import lotto.exception.ErrorMessages;
+import lotto.exception.LottoValidationException;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -29,7 +31,7 @@ public class LottoResultService {
         return new WinningResult(result);
     }
 
-    public ResultStatistics aggregate(WinningResult winningResult, Payment payment) {
-        return ResultStatistics.of(winningResult, payment);
+    public ResultStatistics aggregate(WinningResult winningResult) {
+        return ResultStatistics.of(winningResult);
     }
 }

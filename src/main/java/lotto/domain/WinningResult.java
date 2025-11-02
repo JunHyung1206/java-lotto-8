@@ -23,4 +23,8 @@ public class WinningResult {
         }
         return prize;
     }
+
+    public int totalCounts() {
+        return counts.values().stream().mapToInt(Integer::intValue).sum();
+    }
 }
