@@ -16,6 +16,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        if (numbers == null) {
+            throw new LottoValidationException(ErrorMessages.INVALID_INPUT_ERROR);
+        }
         if (numbers.size() != LottoInfo.PICK_NUMBER_COUNT) {
             throw new LottoValidationException(ErrorMessages.NOT_LOTTO_COUNT_ERROR);
         }
@@ -27,8 +30,8 @@ public class Lotto {
         }
     }
 
-    private boolean isOutOfRange(int number){
-        return (number < LottoInfo.MIN_VALUE || number > LottoInfo.MAX_VALUE);
+    private boolean isOutOfRange(int value){
+        return (value < LottoInfo.MIN_VALUE || value > LottoInfo.MAX_VALUE);
     }
 
     private boolean isDuplicate(List<Integer> numbers) {
