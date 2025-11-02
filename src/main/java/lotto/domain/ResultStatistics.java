@@ -14,6 +14,9 @@ public class ResultStatistics {
 
     public static ResultStatistics of(WinningResult winningResult) {
         int purchasedPayment = winningResult.totalCounts() * LottoInfo.LOTTO_PRICE;
+        if (purchasedPayment == 0) {
+            return new ResultStatistics(0, 0);
+        }
         long totalPrize = winningResult.calculatePrize();
         double rateOfReturn = ((double) totalPrize / purchasedPayment) * PERSENT;
         return new ResultStatistics(totalPrize, rateOfReturn);
