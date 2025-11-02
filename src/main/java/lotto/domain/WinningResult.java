@@ -1,4 +1,3 @@
-// WinningResult.java
 package lotto.domain;
 
 import lotto.config.WinningRank;

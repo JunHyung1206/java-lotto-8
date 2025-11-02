@@ -1,10 +1,8 @@
 package lotto.domain;
 
-import lotto.config.LottoInfo;
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoValidationException;
 
-import java.util.List;
 
 public class WinningNumbers {
     private final Lotto mainNumbers;
@@ -17,6 +15,9 @@ public class WinningNumbers {
     }
 
     private void validate(Lotto mainNumbers, BonusNumber bonusNumber) {
+        if (mainNumbers == null || bonusNumber == null) {
+            throw new LottoValidationException(ErrorMessages.INVALID_INPUT_ERROR);
+        }
         if (isDuplicate(mainNumbers, bonusNumber)) {
             throw new LottoValidationException(ErrorMessages.DUPLICATE_ERROR);
         }

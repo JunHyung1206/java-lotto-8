@@ -35,7 +35,17 @@ public class LottoController {
     private WinningNumbers getWinningNumbers() {
         Lotto mainNumbers = getSelectedLotto();
         BonusNumber bonusNumber = getBonusNumber(mainNumbers);
-        return new WinningNumbers(mainNumbers, bonusNumber);
+
+        WinningNumbers winningNumbers = null;
+        while (winningNumbers == null) {
+            try {
+                winningNumbers = new WinningNumbers(mainNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+                bonusNumber = getBonusNumber(mainNumbers);
+            }
+        }
+        return winningNumbers;
     }
 
     private Payment getPayment() {
