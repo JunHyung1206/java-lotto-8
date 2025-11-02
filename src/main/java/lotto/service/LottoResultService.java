@@ -15,7 +15,7 @@ public class LottoResultService {
     public WinningResult calculateResult(List<Lotto> lottos, WinningNumbers winningNumbers) {
         Map<WinningRank, Integer> result = new EnumMap<>(WinningRank.class);
         for (Lotto lotto : lottos) {
-            WinningRank rank = new LottoResult(lotto, winningNumbers).getResult();
+            WinningRank rank = new LottoMatcher().getResult(lotto, winningNumbers);
             result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
         return new WinningResult(result);

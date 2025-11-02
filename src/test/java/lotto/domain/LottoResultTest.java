@@ -11,39 +11,32 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoResultTest {
-    LottoResult lottoResult;
     WinningNumbers winningNumbers;
+    LottoMatcher lottoMatcher;
 
     @BeforeEach
     void setUp() {
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7);
         winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
+        lottoMatcher = new LottoMatcher();
     }
 
     @Test
     void successTest() {
         Lotto firstTestLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto secondTestLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        Lotto thirdTestLotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
 
-        lottoResult = new LottoResult(firstTestLotto, winningNumbers);
-        WinningRank result = lottoResult.getResult();
+        lottoMatcher.getResult(firstTestLotto, winningNumbers);
+        WinningRank result = lottoMatcher.getResult(firstTestLotto, winningNumbers);
 
         assertThat(result).isInstanceOf(WinningRank.class);
         assertThat(result).isEqualTo(WinningRank.FIRST);
 
-        Lotto secondTestLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
 
-        lottoResult = new LottoResult(secondTestLotto, winningNumbers);
-        result = lottoResult.getResult();
-
-        assertThat(result).isEqualTo(WinningRank.SECOND);
-
-        Lotto thirdTestLotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
-
-        lottoResult = new LottoResult(thirdTestLotto, winningNumbers);
-        result = lottoResult.getResult();
-
-        assertThat(result).isEqualTo(WinningRank.THIRD);
+        assertThat(lottoMatcher.getResult(secondTestLotto, winningNumbers)).isEqualTo(WinningRank.SECOND);
+        assertThat(lottoMatcher.getResult(thirdTestLotto, winningNumbers)).isEqualTo(WinningRank.THIRD);
 
     }
 
