@@ -21,13 +21,13 @@ import org.junit.jupiter.params.provider.Arguments;
 class LottoResultEvaluatorTest {
 
     private WinningNumbers draw;
-    private SetBasedLottoResultEvaluator evaluator;
+    private LottoResultEvaluatorImpl evaluator;
 
     @BeforeEach
     void setUp() {
         // 당첨: 1,2,3,4,5,6 / 보너스: 7
         draw = new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new BonusNumber(7));
-        evaluator = new SetBasedLottoResultEvaluator();
+        evaluator = new LottoResultEvaluatorImpl();
     }
 
     @ParameterizedTest(name = "[{index}] {0} -> {1}")
