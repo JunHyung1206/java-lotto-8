@@ -32,7 +32,6 @@ public class InputView {
 
     public int inputBonusNumber() throws LottoValidationException {
         System.out.println(INPUT_BONUS_PROMPT);
-
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {

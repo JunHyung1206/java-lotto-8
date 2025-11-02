@@ -23,21 +23,21 @@ public class LottoResultService {
 
 
     public ResultStatistics aggregate(WinningResult winningResult) {
-        int prize = calculatePrize(winningResult);
+        long prize = calculatePrize(winningResult);
         double rateOfReturn = calculateRateOfReturn(winningResult);
         return new ResultStatistics(prize, rateOfReturn);
     }
 
-    public int calculatePrize(WinningResult result) {
-        int prize = 0;
+    public long calculatePrize(WinningResult result) {
+        long prize = 0L;
         for (WinningRank winningRank : WinningRank.values()) {
-            prize += winningRank.getPrize() * result.getCount(winningRank);
+            prize += (long)winningRank.getPrize() * result.getCount(winningRank);
         }
         return prize;
     }
 
     public double calculateRateOfReturn(WinningResult winningResult){
-        int prize = calculatePrize(winningResult);
+        long prize = calculatePrize(winningResult);
         int totalLottoCounts = 0;
         for (WinningRank count : winningResult.getCounts().keySet()) {
             totalLottoCounts += winningResult.getCount(count);

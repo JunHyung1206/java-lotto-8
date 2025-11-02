@@ -1,15 +1,15 @@
 package lotto.domain;
 
 public class ResultStatistics {
-    private final int prize;
+    private final long prize;
     private final double rateOfReturn;
 
-    public ResultStatistics(int prize, double rateOfReturn) {
+    public ResultStatistics(long prize, double rateOfReturn) {
         this.prize = prize;
         this.rateOfReturn = rateOfReturn;
     }
 
-    public int getPrize() {
+    public long getPrize() {
         return prize;
     }
 
