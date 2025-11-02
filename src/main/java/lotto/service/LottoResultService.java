@@ -4,22 +4,23 @@ import lotto.config.LottoInfo;
 import lotto.config.WinningRank;
 import lotto.domain.*;
 import lotto.domain.WinningNumbers;
+import lotto.domain.lottoresultevaluator.LottoResultEvaluator;
 
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoResultService {
-    private final LottoMatcher lottoMatcher;
+    private final LottoResultEvaluator lottoResultEvaluator;
 
-    public LottoResultService(LottoMatcher lottoMatcher) {
-        this.lottoMatcher = lottoMatcher;
+    public LottoResultService(LottoResultEvaluator lottoMatcher) {
+        this.lottoResultEvaluator = lottoMatcher;
     }
 
     public WinningResult calculateResult(List<Lotto> lottos, WinningNumbers winningNumbers) {
         Map<WinningRank, Integer> result = new EnumMap<>(WinningRank.class);
         for (Lotto lotto : lottos) {
-            WinningRank rank = lottoMatcher.getResult(lotto, winningNumbers);
+            WinningRank rank = lottoResultEvaluator.evaluate(lotto, winningNumbers);
             result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
         return new WinningResult(result);
