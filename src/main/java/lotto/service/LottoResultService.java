@@ -10,12 +10,16 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResultService {
+    private final LottoMatcher lottoMatcher;
 
+    public LottoResultService(LottoMatcher lottoMatcher) {
+        this.lottoMatcher = lottoMatcher;
+    }
 
     public WinningResult calculateResult(List<Lotto> lottos, WinningNumbers winningNumbers) {
         Map<WinningRank, Integer> result = new EnumMap<>(WinningRank.class);
         for (Lotto lotto : lottos) {
-            WinningRank rank = new LottoMatcher().getResult(lotto, winningNumbers);
+            WinningRank rank = lottoMatcher.getResult(lotto, winningNumbers);
             result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
         return new WinningResult(result);
@@ -31,12 +35,12 @@ public class LottoResultService {
     public long calculatePrize(WinningResult result) {
         long prize = 0L;
         for (WinningRank winningRank : WinningRank.values()) {
-            prize += (long)winningRank.getPrize() * result.getCount(winningRank);
+            prize += (long) winningRank.getPrize() * result.getCount(winningRank);
         }
         return prize;
     }
 
-    public double calculateRateOfReturn(WinningResult winningResult){
+    public double calculateRateOfReturn(WinningResult winningResult) {
         long prize = calculatePrize(winningResult);
         int totalLottoCounts = 0;
         for (WinningRank count : winningResult.getCounts().keySet()) {
