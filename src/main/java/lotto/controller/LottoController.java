@@ -1,6 +1,10 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.Payment;
+import lotto.domain.WinningNumbers;
 import lotto.mapper.LottoMapper;
 import lotto.service.LottoPurchaseService;
 import lotto.service.LottoResultService;
@@ -26,6 +30,7 @@ public class LottoController {
         Payment payment = getPayment();
         List<Lotto> purchasedLottos = lottoPurchaseService.purchase(payment);
         outputView.printSalesLotto(LottoMapper.toSalesLottoDTO(purchasedLottos));
+
         WinningNumbers winningNumbers = getWinningNumbers();
         WinningResult winningResult = lottoResultService.calculateResult(purchasedLottos, winningNumbers);
         ResultStatistics resultStatistics = lottoResultService.aggregate(winningResult);
@@ -33,16 +38,14 @@ public class LottoController {
     }
 
     private WinningNumbers getWinningNumbers() {
-        Lotto mainNumbers = getSelectedLotto();
-        BonusNumber bonusNumber = getBonusNumber(mainNumbers);
-
         WinningNumbers winningNumbers = null;
         while (winningNumbers == null) {
             try {
+                Lotto mainNumbers = new Lotto(inputView.inputLotto());
+                BonusNumber bonusNumber = new BonusNumber(inputView.inputBonusNumber());
                 winningNumbers = new WinningNumbers(mainNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
-                bonusNumber = getBonusNumber(mainNumbers);
             }
         }
         return winningNumbers;
@@ -58,29 +61,5 @@ public class LottoController {
             }
         }
         return payment;
-    }
-
-    private Lotto getSelectedLotto() {
-        Lotto lotto = null;
-        while (lotto == null) {
-            try {
-                lotto = new Lotto(inputView.inputLotto());
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
-        }
-        return lotto;
-    }
-
-    private BonusNumber getBonusNumber(Lotto lotto) {
-        BonusNumber bonusNumber = null;
-        while (bonusNumber == null) {
-            try {
-                bonusNumber = new BonusNumber(inputView.inputBonusNumber());
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
-        }
-        return bonusNumber;
     }
 }
