@@ -44,7 +44,7 @@ class LottoTest {
         assertThrows(LottoValidationException.class, () -> new Lotto(List.of(1, 2, 3, 4, 5, 5)));
         assertThrows(LottoValidationException.class, () -> new Lotto(List.of(1, 2, 3, 4, 5, 1)));
         assertThrows(LottoValidationException.class, () -> new Lotto(List.of(3, 2, 3, 4, 5, 43)));
-        assertThrows(LottoValidationException.class, () -> new Lotto(List.of(13, 2, 13, 4, 5, 50)));
+        assertThrows(LottoValidationException.class, () -> new Lotto(List.of(13, 2, 13, 4, 5, 1)));
         assertThrows(LottoValidationException.class, () -> new Lotto(List.of(15, 15, 15, 15, 15, 15)));
     }
 
@@ -53,5 +53,11 @@ class LottoTest {
     void sortedTest() {
         Lotto lotto = new Lotto(List.of(6, 2, 3, 4, 5, 1));
         assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
+
+    @Test
+    @DisplayName("로또의 내부값은 null이 되어서는 안된다.")
+    void notNullTest() {
+        assertThrows(LottoValidationException.class, () -> new Lotto(null));
     }
 }
