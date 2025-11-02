@@ -23,7 +23,7 @@ class WinningNumbersTest {
     @ParameterizedTest
     @ValueSource(ints = {7,8,9})
     @DisplayName("보너스 번호의 입력 값이 당첨 번호와 겹치는지 확인한다.")
-    void successCase(int input) {
+    void successTestCase(int input) {
         bonusNumber = new BonusNumber(input);
         WinningNumbers winningNumbers = new WinningNumbers(lotto, bonusNumber);
 
@@ -34,7 +34,7 @@ class WinningNumbersTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    @DisplayName("보너스 번호의 입력 값이 당첨 번호와 겹치는지 확인한다.")
+    @DisplayName("보너스 번호의 입력 값이 당첨 번호와 겹친다면 예외를 반환한다.")
     void duplicateCase(int input) {
         bonusNumber = new BonusNumber(input);
         assertThrows(LottoValidationException.class, () -> new WinningNumbers(lotto, bonusNumber));
