@@ -17,8 +17,12 @@ public class BonusNumber {
     }
 
     private void validate(int value) {
-        if (value < LottoInfo.MIN_VALUE || value > LottoInfo.MAX_VALUE) {
+        if (isOutOfRange(value)) {
             throw new LottoValidationException(ErrorMessages.OUT_OF_RANGE_ERROR);
         }
+    }
+
+    private boolean isOutOfRange(int value) {
+        return (value < LottoInfo.MIN_VALUE || value > LottoInfo.MAX_VALUE);
     }
 }
