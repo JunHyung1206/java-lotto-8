@@ -12,7 +12,7 @@ class PaymentTest {
     Payment payment;
 
     @ParameterizedTest
-    @DisplayName("구매 금액은 양의 정수여야 한다.")
+    @DisplayName("정상적인 값에 대해서 테스트 한다.")
     @ValueSource(ints = {
             1000,
             2000,
