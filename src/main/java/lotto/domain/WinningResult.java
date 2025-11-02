@@ -16,7 +16,11 @@ public class WinningResult {
         return counts;
     }
 
-    public int getCount(WinningRank rank) {
-        return counts.getOrDefault(rank, 0);
+    public long calculatePrize() {
+        long prize = 0L;
+        for (WinningRank winningRank : WinningRank.values()) {
+            prize += winningRank.getPrize() * counts.get(winningRank);
+        }
+        return prize;
     }
 }
