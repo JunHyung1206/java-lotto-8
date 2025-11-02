@@ -33,7 +33,7 @@ public class LottoController {
 
         WinningNumbers winningNumbers = getWinningNumbers();
         WinningResult winningResult = lottoResultService.calculateResult(purchasedLottos, winningNumbers);
-        ResultStatistics resultStatistics = lottoResultService.aggregate(winningResult);
+        ResultStatistics resultStatistics = lottoResultService.aggregate(winningResult, payment);
         outputView.printResult(LottoMapper.toResultStatisticsDTO(winningResult, resultStatistics));
     }
 

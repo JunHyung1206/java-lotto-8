@@ -12,9 +12,10 @@ import java.util.Map;
 
 public class LottoResultService {
     private final LottoResultEvaluator lottoResultEvaluator;
+    private static final double PERCENT = 100.0;
 
-    public LottoResultService(LottoResultEvaluator lottoMatcher) {
-        this.lottoResultEvaluator = lottoMatcher;
+    public LottoResultService(LottoResultEvaluator lottoResultEvaluator) {
+        this.lottoResultEvaluator = lottoResultEvaluator;
     }
 
     public WinningResult calculateResult(List<Lotto> lottos, WinningNumbers winningNumbers) {
@@ -27,28 +28,24 @@ public class LottoResultService {
     }
 
 
-    public ResultStatistics aggregate(WinningResult winningResult) {
+    public ResultStatistics aggregate(WinningResult winningResult, Payment payment) {
         long prize = calculatePrize(winningResult);
-        double rateOfReturn = calculateRateOfReturn(winningResult);
+        double rateOfReturn = calculateRateOfReturn(prize, payment.getValue());
         return new ResultStatistics(prize, rateOfReturn);
     }
 
     public long calculatePrize(WinningResult result) {
         long prize = 0L;
         for (WinningRank winningRank : WinningRank.values()) {
-            prize += (long) winningRank.getPrize() * result.getCount(winningRank);
+            prize += winningRank.getPrize() * result.getCount(winningRank);
         }
         return prize;
     }
 
-    public double calculateRateOfReturn(WinningResult winningResult) {
-        long prize = calculatePrize(winningResult);
-        int totalLottoCounts = 0;
-        for (WinningRank count : winningResult.getCounts().keySet()) {
-            totalLottoCounts += winningResult.getCount(count);
+    public double calculateRateOfReturn(long prize, int payment) {
+        if (payment <= 0L) {
+            return 0.0;
         }
-
-        int totalPayment = totalLottoCounts * LottoInfo.LOTTO_PRICE;
-        return (double) prize / totalPayment * 100;
+        return (double) prize / payment * PERCENT;
     }
 }
