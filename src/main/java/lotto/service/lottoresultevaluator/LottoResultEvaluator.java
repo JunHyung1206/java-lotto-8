@@ -1,6 +1,6 @@
-package lotto.domain.lottoresultevaluator;
+package lotto.service.lottoresultevaluator;
 
-import lotto.config.WinningRank;
+import lotto.domain.WinningRank;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumbers;
 

@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.config.WinningRank;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;

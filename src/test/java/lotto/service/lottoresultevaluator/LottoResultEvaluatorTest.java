@@ -1,9 +1,10 @@
-package lotto.domain.lottoresultevaluator;
+package lotto.service.lottoresultevaluator;
 
-import lotto.config.WinningRank;
+import lotto.domain.WinningRank;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumbers;
+import lotto.service.lottoresultevaluator.LottoResultEvaluatorImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;

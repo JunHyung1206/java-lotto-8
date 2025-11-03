@@ -1,4 +1,4 @@
-package lotto.config;
+package lotto.domain;
 
 public enum WinningRank {
     FIRST("6개 일치", 2_000_000_000),

@@ -1,10 +1,12 @@
-package lotto.domain.lottoresultevaluator;
+package lotto.service.lottoresultevaluator;
 
-import lotto.config.WinningRank;
+import lotto.domain.WinningRank;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumbers;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class LottoResultEvaluatorImpl implements LottoResultEvaluator {
     private int match(List<Integer> lotto, List<Integer> mainNumber) {

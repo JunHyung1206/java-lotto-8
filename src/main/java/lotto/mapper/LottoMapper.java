@@ -6,7 +6,7 @@ import lotto.domain.WinningResult;
 import lotto.dto.ResultLineDTO;
 import lotto.dto.ResultsDataDTO;
 import lotto.dto.PurchasedLottoDTO;
-import lotto.config.WinningRank;
+import lotto.domain.WinningRank;
 
 import java.util.ArrayList;
 import java.util.List;
