@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.*;
 import lotto.util.NumbersParser;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
