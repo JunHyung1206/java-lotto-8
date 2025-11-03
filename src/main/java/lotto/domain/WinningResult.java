@@ -19,7 +19,7 @@ public class WinningResult {
     public long calculatePrize() {
         long prize = 0L;
         for (WinningRank winningRank : WinningRank.values()) {
-            prize += winningRank.getPrize() * counts.get(winningRank);
+            prize += winningRank.getPrize() * getCount(winningRank);
         }
         return prize;
     }

@@ -1,12 +1,9 @@
 package lotto.service;
 
-import lotto.config.LottoInfo;
 import lotto.config.WinningRank;
 import lotto.domain.*;
 import lotto.domain.WinningNumbers;
 import lotto.domain.lottoresultevaluator.LottoResultEvaluator;
-import lotto.exception.ErrorMessages;
-import lotto.exception.LottoValidationException;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -21,9 +18,6 @@ public class LottoResultService {
 
     public WinningResult calculateResult(List<Lotto> lottos, WinningNumbers winningNumbers) {
         Map<WinningRank, Integer> result = new EnumMap<>(WinningRank.class);
-        for (WinningRank r : WinningRank.values()) {
-            result.put(r, 0);
-        }
         for (Lotto lotto : lottos) {
             WinningRank rank = lottoResultEvaluator.evaluate(lotto, winningNumbers);
             result.merge(rank, 1, Integer::sum);
