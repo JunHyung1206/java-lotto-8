@@ -4,6 +4,8 @@ import lotto.dto.ResultLineDTO;
 import lotto.dto.ResultsDataDTO;
 import lotto.dto.PurchasedLottoDTO;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -18,10 +20,15 @@ public class OutputView {
     }
 
     public void printResult(ResultsDataDTO resultStatisticsDTO) {
-        DecimalFormat percentFormat = new DecimalFormat("#,##0.0");
         printResultHeader();
         printResultLines(resultStatisticsDTO);
-        System.out.println("총 수익률은 " + percentFormat.format(resultStatisticsDTO.rateOfReturn()) + "%입니다.");
+        System.out.println("총 수익률은 " + round(resultStatisticsDTO.rateOfReturn()) + "%입니다.");
+    }
+
+    public String round(double value) {
+        DecimalFormat percentFormat = new DecimalFormat("#,##0.0");
+        percentFormat.setRoundingMode(RoundingMode.HALF_UP);
+        return percentFormat.format(BigDecimal.valueOf(value));
     }
 
     private void printResultHeader() {
