@@ -4,8 +4,8 @@ import lotto.domain.Lotto;
 import lotto.domain.ResultStatistics;
 import lotto.domain.WinningResult;
 import lotto.dto.ResultLineDTO;
-import lotto.dto.ResultStatisticsDTO;
-import lotto.dto.SalesLottoDTO;
+import lotto.dto.ResultsDataDTO;
+import lotto.dto.PurchasedLottoDTO;
 import lotto.config.WinningRank;
 
 import java.util.ArrayList;
@@ -20,19 +20,19 @@ public class LottoMapper {
             WinningRank.FIRST
     };
 
-    public static SalesLottoDTO toSalesLottoDTO(List<Lotto> lottos) {
+    public static PurchasedLottoDTO toPurchasedLottoDTO(List<Lotto> lottos) {
         List <List<Integer>> salesLottoDTO = new ArrayList<>();
         for (Lotto lotto : lottos) {
             salesLottoDTO.add(lotto.getNumbers());
         }
-        return new SalesLottoDTO(salesLottoDTO);
+        return new PurchasedLottoDTO(salesLottoDTO);
     }
 
-    public static ResultStatisticsDTO toResultStatisticsDTO(WinningResult winningResult, ResultStatistics resultStatistics) {
+    public static ResultsDataDTO toResultsDataDTO(WinningResult winningResult, ResultStatistics resultStatistics) {
         List<ResultLineDTO> resultLines = new ArrayList<>();
         for (WinningRank winningRank : PRINT_ORDER) {
             resultLines.add(new ResultLineDTO(winningRank.getLabel(), winningRank.getPrize(), winningResult.getCount(winningRank)));
         }
-        return new ResultStatisticsDTO(resultLines, resultStatistics.getRateOfReturn());
+        return new ResultsDataDTO(resultLines, resultStatistics.getRateOfReturn());
     }
 }

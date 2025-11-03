@@ -30,12 +30,12 @@ public class LottoController {
     public void run() {
         Payment payment = getPayment();
         List<Lotto> purchasedLottos = lottoPurchaseService.purchase(payment);
-        outputView.printSalesLotto(LottoMapper.toSalesLottoDTO(purchasedLottos));
+        outputView.printPurchasedLotto(LottoMapper.toPurchasedLottoDTO(purchasedLottos));
 
         WinningNumbers winningNumbers = getWinningNumbers();
         WinningResult winningResult = lottoResultService.calculateResult(purchasedLottos, winningNumbers);
         ResultStatistics resultStatistics = lottoResultService.aggregate(winningResult);
-        outputView.printResult(LottoMapper.toResultStatisticsDTO(winningResult, resultStatistics));
+        outputView.printResult(LottoMapper.toResultsDataDTO(winningResult, resultStatistics));
     }
 
     private WinningNumbers getWinningNumbers() {
