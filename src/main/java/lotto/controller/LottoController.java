@@ -73,7 +73,7 @@ public class LottoController {
         while (true) {
             try {
                 return new Payment(inputView.inputPayment());
-            } catch (IllegalArgumentException e) {
+            } catch (PaymentInvalidException e) {
                 outputView.printError(e.getMessage());
             }
         }
