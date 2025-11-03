@@ -5,7 +5,7 @@ import lotto.config.LottoInfo;
 public class ResultStatistics {
     private final long prize;
     private final double rateOfReturn;
-    private static final int PERSENT = 100;
+    private static final int PERCENT = 100;
 
     private ResultStatistics(long prize, double rateOfReturn) {
         this.prize = prize;
@@ -18,7 +18,7 @@ public class ResultStatistics {
             return new ResultStatistics(0, 0);
         }
         long totalPrize = winningResult.calculatePrize();
-        double rateOfReturn = ((double) totalPrize / purchasedPayment) * PERSENT;
+        double rateOfReturn = ((double) totalPrize / purchasedPayment) * PERCENT;
         return new ResultStatistics(totalPrize, rateOfReturn);
     }
 
