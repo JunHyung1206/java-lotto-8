@@ -12,8 +12,8 @@ public class WinningResult {
         this.counts = Collections.unmodifiableMap(new EnumMap<>(counts));
     }
 
-    public Map<WinningRank, Integer> getCounts() {
-        return counts;
+    public int getCount(WinningRank rank) {
+        return counts.getOrDefault(rank, 0);
     }
 
     public long calculatePrize() {

@@ -10,7 +10,6 @@ import lotto.config.WinningRank;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class LottoMapper {
     private static final WinningRank[] PRINT_ORDER = {
@@ -30,10 +29,9 @@ public class LottoMapper {
     }
 
     public static ResultStatisticsDTO toResultStatisticsDTO(WinningResult winningResult, ResultStatistics resultStatistics) {
-        Map<WinningRank, Integer> result = winningResult.getCounts();
         List<ResultLineDTO> resultLines = new ArrayList<>();
         for (WinningRank winningRank : PRINT_ORDER) {
-            resultLines.add(new ResultLineDTO(winningRank.getLabel(), winningRank.getPrize(), result.getOrDefault(winningRank,0)));
+            resultLines.add(new ResultLineDTO(winningRank.getLabel(), winningRank.getPrize(), winningResult.getCount(winningRank)));
         }
         return new ResultStatisticsDTO(resultLines, resultStatistics.getRateOfReturn());
     }
