@@ -60,4 +60,13 @@ class LottoTest {
     void notNullTest() {
         assertThrows(LottoValidationException.class, () -> new Lotto(null));
     }
+
+    @Test
+    @DisplayName("Lotto의 반환 리스트는 불변이어야 한다")
+    void lottoGetNumbers_isUnmodifiable() {
+        Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
+        List<Integer> view = lotto.getNumbers();
+        assertThrows(UnsupportedOperationException.class, () -> view.add(99));
+        assertThat(view).isEqualTo(List.of(1,2,3,4,5,6));
+    }
 }
