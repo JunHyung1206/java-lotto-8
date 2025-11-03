@@ -6,7 +6,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Payment;
 import lotto.domain.WinningNumbers;
 import lotto.exception.*;
-import lotto.mapper.LottoMapper;
+import lotto.util.LottoMapper;
 import lotto.service.LottoPurchaseService;
 import lotto.service.LottoResultService;
 import lotto.view.InputView;
