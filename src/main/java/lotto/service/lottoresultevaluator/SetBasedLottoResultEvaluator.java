@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class LottoResultEvaluatorImpl implements LottoResultEvaluator {
+public class SetBasedLottoResultEvaluator implements LottoResultEvaluator {
     private int match(List<Integer> lotto, List<Integer> mainNumber) {
         Set<Integer> intersection = new HashSet<>(lotto);
         intersection.retainAll(mainNumber);

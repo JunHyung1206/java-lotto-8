@@ -4,11 +4,8 @@ import lotto.domain.WinningRank;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumbers;
-import lotto.service.lottoresultevaluator.LottoResultEvaluatorImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -16,20 +13,18 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.jupiter.params.provider.Arguments;
 
-@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class LottoResultEvaluatorTest {
+class SetBasedLottoResultEvaluatorTest {
 
     private WinningNumbers draw;
-    private LottoResultEvaluatorImpl evaluator;
+    private SetBasedLottoResultEvaluator evaluator;
 
     @BeforeEach
     void setUp() {
         // 당첨: 1,2,3,4,5,6 / 보너스: 7
         draw = new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new BonusNumber(7));
-        evaluator = new LottoResultEvaluatorImpl();
+        evaluator = new SetBasedLottoResultEvaluator();
     }
 
     @ParameterizedTest(name = "[{index}] {0} -> {1}")

@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.service.lottoresultevaluator.LottoResultEvaluatorImpl;
+import lotto.service.lottoresultevaluator.SetBasedLottoResultEvaluator;
 import lotto.service.lottogenerator.RandomLottoGenerator;
 import lotto.service.LottoPurchaseService;
 import lotto.service.LottoResultService;
@@ -14,7 +14,7 @@ public class Application {
                 new InputView(),
                 new OutputView(),
                 new LottoPurchaseService(new RandomLottoGenerator()),
-                new LottoResultService(new LottoResultEvaluatorImpl()));
+                new LottoResultService(new SetBasedLottoResultEvaluator()));
         lottoController.run();
     }
 }

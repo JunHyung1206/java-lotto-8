@@ -3,7 +3,7 @@ package lotto.service;
 import lotto.domain.WinningRank;
 import lotto.domain.*;
 import lotto.service.lottogenerator.LottoGenerator;
-import lotto.service.lottoresultevaluator.LottoResultEvaluatorImpl;
+import lotto.service.lottoresultevaluator.SetBasedLottoResultEvaluator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,7 +40,7 @@ class LottoResultServiceTest {
         List<Lotto> lottos = lottoPurchaseService.purchase(new Payment(8000));
 
         // when
-        lottoResultService = new LottoResultService(new LottoResultEvaluatorImpl());
+        lottoResultService = new LottoResultService(new SetBasedLottoResultEvaluator());
         lottoResultService.calculateResult(lottos, winningNumbers);
         WinningResult winningResult = lottoResultService.calculateResult(lottos, winningNumbers);
         ResultStatistics aggregate = lottoResultService.aggregate(winningResult);
