@@ -19,6 +19,9 @@ public class Payment {
         if (payment % LottoInfo.LOTTO_PRICE != 0) {
             throw new PaymentInvalidException(ErrorMessages.SALES_ERROR);
         }
+        if (payment > LottoInfo.LOTTO_PRICE) {
+            throw new PaymentInvalidException(ErrorMessages.MAX_PAYMENT_ERROR);
+        }
     }
 
 

@@ -8,6 +8,7 @@ public enum ErrorMessages {
     DUPLICATE_ERROR("중복된 정수가 있습니다."),
     SALES_ERROR("로또는 " + LottoInfo.LOTTO_PRICE + "원 단위로 판매합니다."),
     MIN_PAYMENT_ERROR("구매액은 " + LottoInfo.LOTTO_PRICE + "원 이상입니다."),
+    MAX_PAYMENT_ERROR("한번에 구매할 수 있는 금액은 최대 " + LottoInfo.MAX_INPUT_PAYMENT + "원 입니다."),
     INVALID_INPUT_ERROR("입력 형식이 올바르지 않습니다."),
     INCONSISTENT_RESULT_ERROR("결과의 로또 장수와 구입금액이 일치하지 않습니다.");
     private final String message;
