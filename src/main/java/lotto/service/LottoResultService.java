@@ -1,6 +1,5 @@
 package lotto.service;
 
-import lotto.config.LottoInfo;
 import lotto.config.WinningRank;
 import lotto.domain.*;
 import lotto.domain.WinningNumbers;
