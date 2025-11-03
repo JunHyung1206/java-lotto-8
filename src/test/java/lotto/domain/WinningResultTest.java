@@ -1,11 +1,12 @@
 package lotto.domain;
 
 import lotto.config.WinningRank;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class WinningResultTest {
     @Test
@@ -22,7 +23,7 @@ class WinningResultTest {
         long expectValue = 5_0000 + 5_000 * 2;
 
         long prize = winningResult.calculatePrize();
-        Assertions.assertThat(prize).isEqualTo(expectValue);
+        assertThat(prize).isEqualTo(expectValue);
     }
 
 
@@ -40,7 +41,22 @@ class WinningResultTest {
         long expectValue = 2_000_000_000 * 20L;
 
         long prize = dreamWinningResult.calculatePrize();
-        Assertions.assertThat(prize).isEqualTo(expectValue);
+        assertThat(prize).isEqualTo(expectValue);
+    }
+
+    @Test
+    @DisplayName("WinningResult는 누락된 랭크도 0으로 취급한다")
+    void winningResult_missingRanks_areZero() {
+        WinningResult winningResult = new WinningResult(Map.of(
+                WinningRank.FIFTH, 2,
+                WinningRank.NONE, 5
+        ));
+        assertThat(winningResult.getCount(WinningRank.FIRST)).isZero();
+        assertThat(winningResult.getCount(WinningRank.SECOND)).isZero();
+        assertThat(winningResult.getCount(WinningRank.THIRD)).isZero();
+        assertThat(winningResult.getCount(WinningRank.FOURTH)).isZero();
+        assertThat(winningResult.getCount(WinningRank.FIFTH)).isEqualTo(2);
+        assertThat(winningResult.getCount(WinningRank.NONE)).isEqualTo(5);
     }
 
 }
