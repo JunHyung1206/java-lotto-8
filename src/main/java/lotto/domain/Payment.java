@@ -2,7 +2,7 @@ package lotto.domain;
 
 import lotto.config.LottoInfo;
 import lotto.exception.ErrorMessages;
-import lotto.exception.LottoValidationException;
+import lotto.exception.PaymentInvalidException;
 
 public class Payment {
     private final int value;
@@ -14,10 +14,10 @@ public class Payment {
 
     private void validate(int payment) {
         if (payment < LottoInfo.LOTTO_PRICE) {
-            throw new LottoValidationException(ErrorMessages.MIN_PAYMENT_ERROR);
+            throw new PaymentInvalidException(ErrorMessages.MIN_PAYMENT_ERROR);
         }
         if (payment % LottoInfo.LOTTO_PRICE != 0) {
-            throw new LottoValidationException(ErrorMessages.SALES_ERROR);
+            throw new PaymentInvalidException(ErrorMessages.SALES_ERROR);
         }
     }
 

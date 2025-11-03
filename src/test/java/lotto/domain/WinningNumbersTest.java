@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import lotto.exception.LottoValidationException;
+import lotto.exception.LottoInvalidException;
+import lotto.exception.WinningNumbersInvalidException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,7 +39,7 @@ class WinningNumbersTest {
     @DisplayName("보너스 번호의 입력 값이 당첨 번호와 겹친다면 예외를 반환한다.")
     void duplicateCase(int input) {
         bonusNumber = new BonusNumber(input);
-        assertThrows(LottoValidationException.class, () -> new WinningNumbers(lotto, bonusNumber));
+        assertThrows(WinningNumbersInvalidException.class, () -> new WinningNumbers(lotto, bonusNumber));
     }
 
     @Test
@@ -46,8 +47,8 @@ class WinningNumbersTest {
     void notNullTest() {
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
         BonusNumber bonus = new BonusNumber(7);
-        assertThrows(LottoValidationException.class, () -> new WinningNumbers(null, bonus));
-        assertThrows(LottoValidationException.class, () -> new WinningNumbers(lotto, null));
+        assertThrows(WinningNumbersInvalidException.class, () -> new WinningNumbers(null, bonus));
+        assertThrows(WinningNumbersInvalidException.class, () -> new WinningNumbers(lotto, null));
     }
 
 }

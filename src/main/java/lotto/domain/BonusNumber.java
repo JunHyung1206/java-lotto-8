@@ -2,7 +2,7 @@ package lotto.domain;
 
 import lotto.config.LottoInfo;
 import lotto.exception.ErrorMessages;
-import lotto.exception.LottoValidationException;
+import lotto.exception.WinningNumbersInvalidException;
 
 public class BonusNumber {
     private final int value;
@@ -18,7 +18,7 @@ public class BonusNumber {
 
     private void validate(int value) {
         if (isOutOfRange(value)) {
-            throw new LottoValidationException(ErrorMessages.OUT_OF_RANGE_ERROR);
+            throw new WinningNumbersInvalidException(ErrorMessages.OUT_OF_RANGE_ERROR);
         }
     }
 

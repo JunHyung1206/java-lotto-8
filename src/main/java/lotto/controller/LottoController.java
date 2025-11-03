@@ -5,6 +5,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Payment;
 import lotto.domain.WinningNumbers;
+import lotto.exception.*;
 import lotto.mapper.LottoMapper;
 import lotto.service.LottoPurchaseService;
 import lotto.service.LottoResultService;
@@ -25,7 +26,7 @@ public class LottoController {
         this.lottoPurchaseService = lottoPurchaseService;
         this.lottoResultService = lottoResultService;
     }
-    
+
     public void run() {
         Payment payment = getPayment();
         List<Lotto> purchasedLottos = lottoPurchaseService.purchase(payment);
@@ -38,28 +39,43 @@ public class LottoController {
     }
 
     private WinningNumbers getWinningNumbers() {
-        WinningNumbers winningNumbers = null;
-        while (winningNumbers == null) {
+        Lotto main = readValidLotto();
+        while (true) {
             try {
-                Lotto mainNumbers = new Lotto(inputView.inputLotto());
-                BonusNumber bonusNumber = new BonusNumber(inputView.inputBonusNumber());
-                winningNumbers = new WinningNumbers(mainNumbers, bonusNumber);
-            } catch (IllegalArgumentException e) {
+                return new WinningNumbers(main, readValidBonus());
+            } catch (WinningNumbersInvalidException e) {
                 outputView.printError(e.getMessage());
             }
         }
-        return winningNumbers;
+    }
+
+    private Lotto readValidLotto() {
+        while (true) {
+            try {
+                return new Lotto(inputView.inputLotto());
+            } catch (LottoInvalidException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private BonusNumber readValidBonus() {
+        while (true) {
+            try {
+                return new BonusNumber(inputView.inputBonusNumber());
+            } catch (WinningNumbersInvalidException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
     }
 
     private Payment getPayment() {
-        Payment payment = null;
-        while (payment == null) {
+        while (true) {
             try {
-                payment = new Payment(inputView.inputPayment());
+                return new Payment(inputView.inputPayment());
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
         }
-        return payment;
     }
 }
