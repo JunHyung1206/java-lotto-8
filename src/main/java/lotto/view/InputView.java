@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.*;
+import lotto.util.NumbersParser;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,7 @@ public class InputView {
     public List<Integer> inputLotto() throws BaseInvalidException {
         System.out.println(INPUT_LOTTO_PROMPT);
         try {
-            return toIntegerList(Console.readLine());
+            return NumbersParser.toIntegerList(Console.readLine());
         } catch (NumberFormatException e) {
             throw new LottoInvalidException(ErrorMessages.INVALID_INPUT_ERROR);
         }
@@ -38,10 +39,5 @@ public class InputView {
         }
     }
 
-    private List<Integer> toIntegerList(String rawNumbers) {
-        return Arrays.stream(rawNumbers.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .toList();
-    }
+
 }
