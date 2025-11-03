@@ -42,7 +42,7 @@ public class OutputView {
         System.out.println();
         List<ResultLineDTO> resultLines = resultStatisticsDTO.resultLine();
         for (ResultLineDTO resultLine : resultLines) {
-            System.out.printf("%s (%s원) - %d개%n",resultLine.label(), moneyFormat.format(resultLine.prize()),resultLine.count());
+            System.out.printf("%s (%s원) - %d개%n", resultLine.label(), moneyFormat.format(resultLine.prize()), resultLine.count());
         }
     }
 

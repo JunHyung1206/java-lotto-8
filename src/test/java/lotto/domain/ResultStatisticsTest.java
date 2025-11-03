@@ -22,7 +22,7 @@ class ResultStatisticsTest {
 
         ResultStatistics resultStatistics = ResultStatistics.of(winningResult);
         double rateOfReturn = resultStatistics.getRateOfReturn();
-        double expectedValue = (double)(50000 + 5000*2)/8000 * 100;
+        double expectedValue = (double) (50000 + 5000 * 2) / 8000 * 100;
         Assertions.assertThat(rateOfReturn).isEqualTo(expectedValue);
     }
 

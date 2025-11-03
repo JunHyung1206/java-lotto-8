@@ -30,7 +30,7 @@ public class Lotto {
         }
     }
 
-    private boolean isOutOfRange(int value){
+    private boolean isOutOfRange(int value) {
         return (value < LottoInfo.MIN_VALUE || value > LottoInfo.MAX_VALUE);
     }
 

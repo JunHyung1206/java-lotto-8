@@ -21,7 +21,7 @@ public class LottoMapper {
     };
 
     public static PurchasedLottoDTO toPurchasedLottoDTO(List<Lotto> lottos) {
-        List <List<Integer>> salesLottoDTO = new ArrayList<>();
+        List<List<Integer>> salesLottoDTO = new ArrayList<>();
         for (Lotto lotto : lottos) {
             salesLottoDTO.add(lotto.getNumbers());
         }

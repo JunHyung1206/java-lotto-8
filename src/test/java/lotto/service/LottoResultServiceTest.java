@@ -17,6 +17,7 @@ class LottoResultServiceTest {
     LottoPurchaseService lottoPurchaseService;
     LottoResultService lottoResultService;
     WinningNumbers winningNumbers = new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new BonusNumber(7));
+
     @BeforeEach
     void setUp() {
         List<List<Integer>> testSet = List.of(

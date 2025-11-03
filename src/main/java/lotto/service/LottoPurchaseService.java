@@ -10,15 +10,16 @@ import java.util.stream.Stream;
 
 public class LottoPurchaseService {
     private final LottoGenerator lottoGenerator;
+
     public LottoPurchaseService(LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
     }
 
-    public List<Lotto> purchase(Payment payment){
+    public List<Lotto> purchase(Payment payment) {
         return Stream.generate(lottoGenerator::generate)
                 .limit(calculatePurchasableCount(payment))
                 .toList();
-    };
+    }
 
     private int calculatePurchasableCount(Payment payment) {
         return payment.getValue() / LottoInfo.LOTTO_PRICE;

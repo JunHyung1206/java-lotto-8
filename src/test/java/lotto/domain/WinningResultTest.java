@@ -33,7 +33,7 @@ class WinningResultTest {
                 WinningRank.FIRST, 20,
                 WinningRank.SECOND, 0,
                 WinningRank.THIRD, 0,
-                WinningRank.FOURTH,0,
+                WinningRank.FOURTH, 0,
                 WinningRank.FIFTH, 0,
                 WinningRank.NONE, 0
         ));

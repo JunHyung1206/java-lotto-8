@@ -23,7 +23,7 @@ class WinningNumbersTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {7,8,9})
+    @ValueSource(ints = {7, 8, 9})
     @DisplayName("보너스 번호의 입력 값이 당첨 번호와 겹치는지 확인한다.")
     void successTestCase(int input) {
         bonusNumber = new BonusNumber(input);
@@ -45,10 +45,9 @@ class WinningNumbersTest {
     @Test
     @DisplayName("WinningNumbers는 null 인자를 가져서는 안된다.")
     void notNullTest() {
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonus = new BonusNumber(7);
         assertThrows(WinningNumbersInvalidException.class, () -> new WinningNumbers(null, bonus));
         assertThrows(WinningNumbersInvalidException.class, () -> new WinningNumbers(lotto, null));
     }
-
 }
