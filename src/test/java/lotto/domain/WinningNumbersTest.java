@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.exception.LottoValidationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -39,4 +40,14 @@ class WinningNumbersTest {
         bonusNumber = new BonusNumber(input);
         assertThrows(LottoValidationException.class, () -> new WinningNumbers(lotto, bonusNumber));
     }
+
+    @Test
+    @DisplayName("WinningNumbers는 null 인자를 가져서는 안된다.")
+    void notNullTest() {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        BonusNumber bonus = new BonusNumber(7);
+        assertThrows(LottoValidationException.class, () -> new WinningNumbers(null, bonus));
+        assertThrows(LottoValidationException.class, () -> new WinningNumbers(lotto, null));
+    }
+
 }
